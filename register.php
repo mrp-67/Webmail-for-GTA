@@ -1,5 +1,4 @@
 <?php 
-include("password.php");
 session_start();
 $pdo = new PDO('mysql:host=localhost;dbname=webmail', 'root', '');
 ?>

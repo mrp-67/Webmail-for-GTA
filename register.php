@@ -77,18 +77,28 @@ if(isset($_GET['register'])) {
     $email = $_POST['email'];
     $passwort = $_POST['passwort'];
     $passwort2 = $_POST['passwort2'];
+    $vorname = $_POST['vorname'];
+    $nachname = $_POST['nachname']
   
     if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         echo '<div><p>Bitte eine gültige E-Mail-Adresse eingeben<p></div><br>';
         $error = true;
-    }     
-    if(strlen($passwort) == 0) {
-        echo '<div><p>Bitte ein Passwort angeben<p></div><br>';
-        $error = true;
+    }    
+     elseif(strlen($vorname) == 0) {
+      echo '<div><p>Bitte geben Sie ihre Vorname an.<p></div><br>';
+      $error = true;
     }
-    if($passwort != $passwort2) {
-        echo '<div><p>Die Passwörter müssen übereinstimmen<p></div><br>';
-        $error = true;
+    elseif(strlen($nachname) == 0) {
+      echo '<div><p>Bitte geben Sie ihre Nachname an.<p></div><br>';
+      $error = true;
+    }  
+    elseif(strlen($passwort) == 0) {
+      echo '<div><p>Bitte ein Passwort angeben<p></div><br>';
+      $error = true;
+    }
+    elseif($passwort != $passwort2) {
+      echo '<div><p>Die Passwörter müssen übereinstimmen<p></div><br>';
+      $error = true;
     }
     
     //Überprüfe, dass die E-Mail-Adresse noch nicht registriert wurde
@@ -107,11 +117,11 @@ if(isset($_GET['register'])) {
     if(!$error) {    
         $passwort_hash = password_hash($passwort, PASSWORD_DEFAULT);
         
-        $statement = $pdo->prepare("INSERT INTO users (email, passwort) VALUES (:email, :passwort)");
-        $result = $statement->execute(array('email' => $email, 'passwort' => $passwort_hash));
+        $statement = $pdo->prepare("INSERT INTO users (email, passwort, vorname, nachname) VALUES (:email, :passwort, :vorname, :nachname)");
+        $result = $statement->execute(array('email' => $email, 'passwort' => $passwort_hash, 'vorname' => $vorname, 'nachname' => $nachname));
         
         if($result) {        
-            echo '<div><p>Du wurdest erfolgreich registriert. <a href="login.php">Zum Login<p></div><br>';
+            echo '<div><p>Sie haben ihr E-Mail-Konto erfolgreich angelegt.<br>Sie werden in 3 Sekunden automatisch weitergeleitet. <meta http-equiv="refresh" content="3; URL=login.php"><br>';
             $showFormular = false;
         } else {
             echo '<div><p>Beim Abspeichern ist leider ein Fehler aufgetreten<p></div><br>';
@@ -124,6 +134,10 @@ if($showFormular) {
  
 <form class="form" action="?register=1" method="post">
     <br>
+    <input class="text" type="email" size="40" maxlength="250" name="vorname" placeholder="Vorname">
+
+    <input class="text" type="email" size="40" maxlength="250" name="nachname" placeholder="Nachname">
+
     <input class="email" type="email" size="40" maxlength="250" name="email" placeholder="E-Mail">
     
     <br>
@@ -132,7 +146,7 @@ if($showFormular) {
     <br>
     <input class="password" type="password" size="40" maxlength="250" name="passwort2" placeholder="Passwort"><br>
     
-    <input class="submit" type="submit" value="Abschicken">
+    <input class="submit" type="submit" value="Ich stimme zu. Jetzt E-Mail-Konto anlegen.">
 </form>
  
 <?php

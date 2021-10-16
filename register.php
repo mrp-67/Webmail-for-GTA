@@ -16,21 +16,29 @@ session_start();
 
       .form {
         margin: auto;
-        margin-top: 22%;
+        margin-top: 18%;
+        display: grid;
+      }
+
+      .text {
+        width: 26vh;
+        height: 3vh;
+        text-align: center;
+        margin: 1vh auto;
       }
 
       .email {
         width: 26vh;
         height: 3vh;
         text-align: center;
-        margin: 1vh 0;
+        margin: 1vh auto;
       }
 
       .password {
         width: 26vh;
         height: 3vh;
         text-align: center;
-        margin: 1vh 0;
+        margin: 1vh auto;
       }
 
       .submit {
@@ -78,7 +86,7 @@ if(isset($_GET['register'])) {
     $passwort = $_POST['passwort'];
     $passwort2 = $_POST['passwort2'];
     $vorname = $_POST['vorname'];
-    $nachname = $_POST['nachname']
+    $nachname = $_POST['nachname'];
   
     if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         echo '<div><p>Bitte eine gültige E-Mail-Adresse eingeben<p></div><br>';
@@ -133,18 +141,16 @@ if($showFormular) {
 ?>
  
 <form class="form" action="?register=1" method="post">
-    <br>
-    <input class="text" type="email" size="40" maxlength="250" name="vorname" placeholder="Vorname">
 
-    <input class="text" type="email" size="40" maxlength="250" name="nachname" placeholder="Nachname">
+    <input class="text" type="text" size="40" maxlength="250" name="vorname" placeholder="Vorname">
+
+    <input class="text" type="text" size="40" maxlength="250" name="nachname" placeholder="Nachname">
 
     <input class="email" type="email" size="40" maxlength="250" name="email" placeholder="E-Mail">
     
-    <br>
     <input class="password" type="password" size="40"  maxlength="250" name="passwort" placeholder="Passwort">
     
-    <br>
-    <input class="password" type="password" size="40" maxlength="250" name="passwort2" placeholder="Passwort"><br>
+    <input class="password" type="password" size="40" maxlength="250" name="passwort2" placeholder="Passwort">
     
     <input class="submit" type="submit" value="Ich stimme zu. Jetzt E-Mail-Konto anlegen.">
 </form>

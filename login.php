@@ -1,7 +1,6 @@
 <?php 
+require_once("db.php"); 
 session_start();
-$pdo = new PDO('mysql:host=localhost;dbname=webmail', 'root', '');
- 
 if(isset($_GET['login'])) {
     $email = $_POST['email'];
     $passwort = $_POST['passwort'];
@@ -31,16 +30,17 @@ if(isset($_GET['login'])) {
 if(isset($errorMessage)) {
     echo $errorMessage;
 }
+if($showFormular) {
 ?>
- 
 <form action="?login=1" method="post">
 E-Mail:<br>
 <input type="email" size="40" maxlength="250" name="email"><br><br>
- 
 Dein Passwort:<br>
 <input type="password" size="40"  maxlength="250" name="passwort"><br>
- 
-<input type="submit" value="Abschicken">
+<input type="submit" value="Login">
 </form> 
+<?php
+} //showformular
+?>
 </body>
 </html>

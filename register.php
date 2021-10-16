@@ -5,7 +5,7 @@ session_start();
 <!DOCTYPE html> 
 <html> 
 <head>
-  <title>Registrierung</title>    
+  <title>Registrierung</title>  
 </head> 
 <body>
  
@@ -19,7 +19,7 @@ if(isset($_GET['register'])) {
     $passwort2 = $_POST['passwort2'];
   
     if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        echo 'Bitte eine gültige E-Mail-Adresse eingeben<br>';
+        echo '<div>Bitte eine gültige E-Mail-Adresse eingeben</div>';
         $error = true;
     }     
     if(strlen($passwort) == 0) {
@@ -62,17 +62,17 @@ if(isset($_GET['register'])) {
 if($showFormular) {
 ?>
  
-<form action="?register=1" method="post">
-E-Mail:<br>
-<input type="email" size="40" maxlength="250" name="email"><br><br>
- 
-Dein Passwort:<br>
-<input type="password" size="40"  maxlength="250" name="passwort"><br>
- 
-Passwort wiederholen:<br>
-<input type="password" size="40" maxlength="250" name="passwort2"><br><br>
- 
-<input type="submit" value="Abschicken">
+<form class="form" action="?register=1" method="post">
+    <br>
+    <input class="email" type="email" size="40" maxlength="250" name="email" placeholder="E-Mail">
+    
+    <br>
+    <input class="password" type="password" size="40"  maxlength="250" name="passwort" placeholder="Passwort">
+    
+    <br>
+    <input class="password" type="password" size="40" maxlength="250" name="passwort2" placeholder="Passwort"><br>
+    
+    <input class="submit" type="submit" value="Abschicken">
 </form>
  
 <?php

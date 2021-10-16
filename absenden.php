@@ -6,6 +6,8 @@
 require_once("db.php"); 
 session_start();
 
+if($_SESSION['email'] == )
+
 if(isset($_GET['absenden'])) {
  
   $absender = $_SESSION['email'];
@@ -18,9 +20,9 @@ if(isset($_GET['absenden'])) {
 
   if($result) {        
     $showFormular = false;
-    echo 'Ihr EMail wurde erfolgreich versendet.<br>Sie werden weitergeleitet in 3 Sekunden.<meta http-equiv="refresh" content="5; URL=http://localhost:8080/webmail/webmail/index.php">';
+    echo 'Ihr EMail wurde erfolgreich versendet.<br>Sie werden weitergeleitet in 3 Sekunden.<meta http-equiv="refresh" content="5; URL=overview.php">';
   } else {
-  echo 'Ihr EMail konnte nicht zugestellt werden, probieren Sie es bitte zu einem anderen Zeitpunkt nochmal.<meta http-equiv="refresh" content="5; URL=http://localhost:8080/webmail/webmail/index.php"> <br>';
+  echo 'Ihr EMail konnte nicht zugestellt werden, probieren Sie es bitte zu einem anderen Zeitpunkt nochmal.<meta http-equiv="refresh" content="5; URL=overview.php"> <br>';
 }
 
 }

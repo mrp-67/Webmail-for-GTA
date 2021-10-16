@@ -14,7 +14,7 @@ if(isset($_GET['login'])) {
         $_SESSION['email'] = $email;
         die('Sie haben sich erfolgreich Angemeldet. <br>Sie werden automatisch weitergeleitet<meta http-equiv="refresh" content="3; URL=overview.php">');
     } else {
-        $errorMessage = "E-Mail oder Passwort ist ungültig.<br>";
+        $errorMessage = "<div><p>E-Mail oder Passwort ist ungültig.</p></div><br>";
     }
     
 }

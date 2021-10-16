@@ -78,7 +78,7 @@ if(isset($_GET['register'])) {
     $passwort = $_POST['passwort'];
     $passwort2 = $_POST['passwort2'];
     $vorname = $_POST['vorname'];
-    $nachname = $_POST['nachname']
+    $nachname = $_POST['nachname'];
   
     if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         echo '<div><p>Bitte eine gültige E-Mail-Adresse eingeben<p></div><br>';

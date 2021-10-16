@@ -22,7 +22,7 @@ if(isset($_GET['login'])) {
 <!DOCTYPE html> 
 <html> 
 <head>
-  <title>Login</title>  s
+  <title>Login</title>  
   <style>
       body {
         margin: 0;

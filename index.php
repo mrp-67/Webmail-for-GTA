@@ -1,25 +1,44 @@
-<!DOCTYPE html>
-<html>
-<body>
-
-<?php
+<?php 
 require_once("db.php"); 
+session_start();
+if(isset($_GET['login'])) {
+    $email = $_POST['email'];
+    $passwort = $_POST['passwort'];
+    
+    $statement = $pdo->prepare("SELECT * FROM users WHERE email = :email");
+    $result = $statement->execute(array('email' => $email));
+    $user = $statement->fetch();
+        
+    //Überprüfung des Passworts
+    if ($user !== false && password_verify($passwort, $user['passwort'])) {
+        $_SESSION['email'] = $email;
+        die('Sie haben sich erfolgreich Angemeldet. <br>Sie werden automatisch weitergeleitet<meta http-equiv="refresh" content="3; URL=overview.php">');
+    } else {
+        $errorMessage = "E-Mail oder Passwort ist ungültig.<br>";
+    }
+    
+}
+?>
+<!DOCTYPE html> 
+<html> 
+<head>
+  <title>Login</title>    
+</head> 
+<body>
+ 
+<?php 
+if(isset($errorMessage)) {
+    echo $errorMessage;
+}
 if($showFormular) {
 ?>
-
-<form method='GET' action='http://localhost:8080/webmail/webmail/login.php'>
-  <input type='submit' value='Login'>
-</form>
-<form method='GET' action='http://localhost:8080/webmail/webmail/register.php'>
-  <input type='submit' value='Registrieren'>
-</form>
-<form method='GET' action='http://localhost:8080/webmail/webmail/absenden.php'>
-  <input type='submit' value='E-Mail schreiben'>
-</form>
-<form method='GET' action='http://localhost:8080/webmail/webmail/postfach.php'>
-  <input type='submit' value='Postfach'> 
-</form>
-
+<form action="?login=1" method="post">
+E-Mail:<br>
+<input type="email" size="40" maxlength="250" name="email"><br><br>
+Dein Passwort:<br>
+<input type="password" size="40"  maxlength="250" name="passwort"><br>
+<input type="submit" value="Login">
+</form> 
 <?php
 } //showformular
 ?>

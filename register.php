@@ -1,6 +1,6 @@
 <?php 
+require_once("db.php"); 
 session_start();
-$pdo = new PDO('mysql:host=localhost;dbname=webmail', 'root', '');
 ?>
 <!DOCTYPE html> 
 <html> 

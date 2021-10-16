@@ -1,6 +1,12 @@
 <?php 
 require_once("db.php"); 
 session_start();
+
+if(isset($_SESSION['email'])) {
+  echo 'Sie sind bereits angemeldet.<br>Sie werden weitergeleitet.<meta http-equiv="refresh" content="3; URL=overview.php">';
+  $showFormular = false;
+}
+
 if(isset($_GET['login'])) {
     $email = $_POST['email'];
     $passwort = $_POST['passwort'];
@@ -12,12 +18,13 @@ if(isset($_GET['login'])) {
     //Überprüfung des Passworts
     if ($user !== false && password_verify($passwort, $user['passwort'])) {
         $_SESSION['email'] = $email;
-        die('Sie haben sich erfolgreich Angemeldet. <br>Sie werden automatisch weitergeleitet<meta http-equiv="refresh" content="3; URL=overview.php">');
+        die('Sie haben sich erfolgreich Angemeldet. <br>Sie werden automatisch weitergeleitet<meta http-equiv="refresh" content="1; URL=overview.php">');
     } else {
         $errorMessage = "<div><p>E-Mail oder Passwort ist ungültig.</p></div><br>";
     }
     
 }
+
 ?>
 <!DOCTYPE html> 
 <html> 

@@ -84,7 +84,7 @@ if(isset($_GET['register'])) {
         echo '<div><p>Bitte eine gültige E-Mail-Adresse eingeben<p></div><br>';
         $error = true;
     }    
-     elseif(strlen($vorname) == 0) {
+    elseif(strlen($vorname) == 0) {
       echo '<div><p>Bitte geben Sie ihre Vorname an.<p></div><br>';
       $error = true;
     }
@@ -121,7 +121,7 @@ if(isset($_GET['register'])) {
         $result = $statement->execute(array('email' => $email, 'passwort' => $passwort_hash, 'vorname' => $vorname, 'nachname' => $nachname));
         
         if($result) {        
-            echo '<div><p>Sie haben ihr E-Mail-Konto erfolgreich angelegt.<br>Sie werden in 3 Sekunden automatisch weitergeleitet. <meta http-equiv="refresh" content="3; URL=login.php"><br>';
+            echo '<div><p>Sie haben ihr E-Mail-Konto erfolgreich angelegt.<br>Sie werden in 3 Sekunden automatisch weitergeleitet. <meta http-equiv="refresh" content="3; URL=index.php"><br>';
             $showFormular = false;
         } else {
             echo '<div><p>Beim Abspeichern ist leider ein Fehler aufgetreten<p></div><br>';
@@ -134,9 +134,9 @@ if($showFormular) {
  
 <form class="form" action="?register=1" method="post">
     <br>
-    <input class="text" type="email" size="40" maxlength="250" name="vorname" placeholder="Vorname">
+    <input class="text" type="text" size="40" maxlength="250" name="vorname" placeholder="Vorname">
 
-    <input class="text" type="email" size="40" maxlength="250" name="nachname" placeholder="Nachname">
+    <input class="text" type="text" size="40" maxlength="250" name="nachname" placeholder="Nachname">
 
     <input class="email" type="email" size="40" maxlength="250" name="email" placeholder="E-Mail">
     

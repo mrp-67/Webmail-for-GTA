@@ -3,16 +3,21 @@
 <body>
 
 <?php
-require_once("db.php"); 
+require_once("db.php");
+session_start();
+
+$absender = $_SESSION['email'];
+if(!isset($_SESSION['email'])) {
+  die("Sie sind nicht eingeloggt!");
+}
+
+$sql = "SELECT * FROM users WHERE email = '$absender'";
+$user = $pdo->query($sql)->fetch();
+echo "Hallo, "; echo $user['vorname']." ".$user['nachname']."<br />";
+
 if($showFormular) {
 ?>
 
-<form method='GET' action='login.php'>
-  <input type='submit' value='Login'>
-</form>
-<form method='GET' action='register.php'>
-  <input type='submit' value='Registrieren'>
-</form>
 <form method='GET' action='absenden.php'>
   <input type='submit' value='E-Mail schreiben'>
 </form>
@@ -20,8 +25,14 @@ if($showFormular) {
   <input type='submit' value='Postfach'> 
 </form>
 
+<form method='GET' action='logout.php'>
+  <input type='submit' value='Ausloggen'> 
+</form>
+
 <?php
 } //showformular
+
+
 ?>
 </body>
 </html>

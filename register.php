@@ -73,6 +73,21 @@ session_start();
         font-family: arial;
       }
 
+      .realitymail {
+        text-align: center;
+        width: 50vh;
+        height: auto;
+        padding: 0.6vh 4vh;
+        color: black;
+        font-size: 15px;
+        margin: 2vh 0px 0px 0px;
+        font-family: arial;
+      }
+
+      a {
+        color: #0037ff;
+      }
+
   </style>  
 </head> 
 <body>
@@ -129,7 +144,7 @@ if(isset($_GET['register'])) {
         $result = $statement->execute(array('email' => $email, 'passwort' => $passwort_hash, 'vorname' => $vorname, 'nachname' => $nachname));
         
         if($result) {        
-            echo '<div><p>Sie haben ihr E-Mail-Konto erfolgreich angelegt.<br>Sie werden in 3 Sekunden automatisch weitergeleitet. <meta http-equiv="refresh" content="3; URL=login.php"><br>';
+            echo '<div><p>Sie haben ihr E-Mail-Konto erfolgreich angelegt.<br>Sie werden in 3 Sekunden automatisch weitergeleitet. <meta http-equiv="refresh" content="3; URL=index.php"><br>';
             $showFormular = false;
         } else {
             echo '<div><p>Beim Abspeichern ist leider ein Fehler aufgetreten<p></div><br>';
@@ -151,6 +166,8 @@ if($showFormular) {
     <input class="password" type="password" size="40"  maxlength="250" name="passwort" placeholder="Passwort">
     
     <input class="password" type="password" size="40" maxlength="250" name="passwort2" placeholder="Passwort">
+
+    <p class="realitymail">Es gelten die <a harf="#">Allgemeinen Geschäftsbedingungen</a> und die dazugehörige <a harf="#">RealityMail Leistungsbeschreibung.</a></p>
     
     <input class="submit" type="submit" value="Ich stimme zu. Jetzt E-Mail-Konto anlegen.">
 </form>

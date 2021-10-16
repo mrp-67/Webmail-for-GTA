@@ -6,8 +6,6 @@
 require_once("db.php"); 
 session_start();
 
-if($_SESSION['email'] == )
-
 if(isset($_GET['absenden'])) {
  
   $absender = $_SESSION['email'];

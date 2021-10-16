@@ -104,6 +104,9 @@ if($showFormular) {
     
     <input class="submit" type="submit" value="Login">
 
+    <p> <a href="register.php">register</a></p>
+
+
 </form> 
 <?php
 } //showformular

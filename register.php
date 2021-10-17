@@ -1,10 +1,12 @@
 <?php 
+header("Content-Type: text/html; charset=utf-8");
 require_once("db.php"); 
 session_start();
 ?>
 <!DOCTYPE html> 
 <html> 
 <head>
+  <meta charset="UTF-8">
   <title>Registrierung</title>  
   <style>
       body {

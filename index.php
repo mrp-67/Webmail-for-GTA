@@ -1,4 +1,5 @@
 <?php 
+header("Content-Type: text/html; charset=utf-8");
 require_once("db.php"); 
 session_start();
 
@@ -29,6 +30,7 @@ if(isset($_GET['login'])) {
 <!DOCTYPE html> 
 <html> 
 <head>
+<meta charset="UTF-8">
   <title>Login</title>  
   <style>
       body {
@@ -111,7 +113,7 @@ if($showFormular) {
     
     <input class="submit" type="submit" value="Login">
 
-    <p> <a href="register.php">register</a></p>
+    <p> <a href="register.php"><font size="-2">Kostenlos registrieren!</font></a></p>
 
 
 </form> 

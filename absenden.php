@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <html>
+<head>
+<meta charset="UTF-8">
+</head>
 <body>
 
 <?php
+header("Content-Type: text/html; charset=utf-8");
 require_once("db.php"); 
 session_start();
 

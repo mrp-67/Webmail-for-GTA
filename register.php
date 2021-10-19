@@ -18,21 +18,29 @@ session_start();
 
       .form {
         margin: auto;
-        margin-top: 22%;
+        margin-top: 18%;
+        display: grid;
+      }
+
+      .text {
+        width: 26vh;
+        height: 3vh;
+        text-align: center;
+        margin: 1vh auto;
       }
 
       .email {
         width: 26vh;
         height: 3vh;
         text-align: center;
-        margin: 1vh 0;
+        margin: 1vh auto;
       }
 
       .password {
         width: 26vh;
         height: 3vh;
         text-align: center;
-        margin: 1vh 0;
+        margin: 1vh auto;
       }
 
       .submit {
@@ -65,6 +73,21 @@ session_start();
         font-size: 20px;
         margin: 0;
         font-family: arial;
+      }
+
+      .realitymail {
+        text-align: center;
+        width: 50vh;
+        height: auto;
+        padding: 0.6vh 4vh;
+        color: black;
+        font-size: 15px;
+        margin: 2vh 0px 0px 0px;
+        font-family: arial;
+      }
+
+      a {
+        color: #0037ff;
       }
 
   </style>  

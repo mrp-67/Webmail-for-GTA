@@ -17,7 +17,7 @@ if(!isset($_SESSION['email'])) {
 
 $sql = "SELECT * FROM users WHERE email = '$absender'";
 $user = $pdo->query($sql)->fetch();
-echo "Hallo, "; echo $user['vorname']." ".$user['nachname']."<br />";
+echo "Hallo, "; echo $user['vorname']." ".$user['nachname']."<br/>";
 
 if($showFormular) {
 ?>

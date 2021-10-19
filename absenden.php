@@ -32,7 +32,7 @@ if(isset($_GET['absenden'])) {
     echo '<div><p>Bitte geben Sie ein Betreff ein.<p></div><br>';
     $error = true;
   }    
-  elseif(strlen($nachname) == 0) {
+  elseif(strlen($message) == 0) {
   echo '<div><p>Sie dürfen keine leere E-Mails versenden.<p></div><br>';
   $error = true;
   }  

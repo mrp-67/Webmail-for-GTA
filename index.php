@@ -87,7 +87,7 @@ if(isset($_GET['login'])) {
         padding: 0.6vh 4vh;
         color: #ff0000;
         font-size: 20px;
-        margin: 0;
+        margin: -2vh;
         font-family: arial;
       }
 
@@ -113,7 +113,7 @@ if($showFormular) {
     
     <input class="submit" type="submit" value="Login">
 
-    <p> <a href="register.php"><font size="-2">Kostenlos registrieren!</font></a></p>
+    <p> <a href="register.php"><font style="font-size: 1.5vh;" size="-2">Kostenlos registrieren!</font></a></p>
 
 
 </form> 

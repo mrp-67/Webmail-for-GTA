@@ -22,15 +22,28 @@ foreach ($pdo->query($sql) as $row){
   echo $row['absender']."<br>".$row['betreff']."<br> <br>";
 }*/
 
+//Mail overview
 $sql = "SELECT * FROM emails WHERE empfaenger = '$email'";
 foreach ($pdo->query($sql) as $row){
   $absender = $row['absender'];
+  $eid = $row['eid'];
+  echo $eid;
   $cmd = "SELECT * FROM users WHERE email = '$absender'";
   foreach ($pdo->query($cmd) as $inf){
     echo $inf['vorname']." ".$inf['nachname']."<br>";
+    $absenderVorname = $inf['vorname'];
+    $absenderNachname = $inf['nachname'];
   }
   echo $row['betreff']."<br> <br>";
+  $absenderBetreff = $row['betreff'];
 }
+
+//read Mail
+
+
+//$sql = "SELECT * FROM emails WHERE empfaenger = '$eid[]';
+
+
 
 ?>
 

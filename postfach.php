@@ -11,7 +11,20 @@ $email = $_SESSION['email'];
 <html> 
 <head>
   <meta charset="UTF-8">
-  <title>Postfach</title>  
+  <title>Postfach</title>
+  <style>  
+    div {
+      background: gold;
+      width: 20%;
+      height: 10vh;
+      margin: 10vh;
+    }
+
+    div:hover {
+      background: red;
+    }
+  
+  </style> 
 </head> 
 <body>
 
@@ -27,23 +40,19 @@ $sql = "SELECT * FROM emails WHERE empfaenger = '$email'";
 foreach ($pdo->query($sql) as $row){
   $absender = $row['absender'];
   $eid = $row['eid'];
-  echo $eid;
+  
   $cmd = "SELECT * FROM users WHERE email = '$absender'";
   foreach ($pdo->query($cmd) as $inf){
-    echo $inf['vorname']." ".$inf['nachname']."<br>";
+    echo "<div>".$inf['vorname']." ".$inf['nachname']."<br>";
     $absenderVorname = $inf['vorname'];
     $absenderNachname = $inf['nachname'];
   }
-  echo $row['betreff']."<br> <br>";
+  echo $row['betreff']."</div>";
   $absenderBetreff = $row['betreff'];
 }
-
-//read Mail
-
-
-//$sql = "SELECT * FROM emails WHERE empfaenger = '$eid[]';
-
-
+if(isset($_GET['eid'])) {
+  echo "Das ist die EMAil ".$eid;
+}
 
 ?>
 

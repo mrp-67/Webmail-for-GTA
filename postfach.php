@@ -23,7 +23,7 @@ $email = $_SESSION['email'];
     div:hover {
       background: red;
     }
-  
+      
   </style> 
 </head> 
 <body>
@@ -36,25 +36,34 @@ foreach ($pdo->query($sql) as $row){
 }*/
 
 //Mail overview
-$sql = "SELECT * FROM emails WHERE empfaenger = '$email'";
+$sql = "SELECT * FROM emails WHERE empfaenger = '$email' ORDER BY eid DESC";
 foreach ($pdo->query($sql) as $row){
   $absender = $row['absender'];
   $eid = $row['eid'];
-  
+ 
   $cmd = "SELECT * FROM users WHERE email = '$absender'";
   foreach ($pdo->query($cmd) as $inf){
-    echo "<div>".$inf['vorname']." ".$inf['nachname']."<br>";
+    echo "".$inf['vorname']." ".$inf['nachname']."<br>";
     $absenderVorname = $inf['vorname'];
     $absenderNachname = $inf['nachname'];
+    echo "<form action='?register=$eid' method='post'><input type='submit' name='eid'>".$row['betreff']."'<br></form>'"; 
   }
-  echo $row['betreff']."</div>";
+//  echo $row['betreff']."</div><button/></tr><br>";
+
   $absenderBetreff = $row['betreff'];
 }
-if(isset($_GET['eid'])) {
-  echo "Das ist die EMAil ".$eid;
-}
+if(isset($_GET['register'])) {
+  $meid = $_GET['register'];
+
+  $msql = "SELECT * FROM emails WHERE eid = '$meid'";
+  $nuser = $pdo->query($msql)->fetch();
+  $nachricht = $nuser['nachricht'];
+  echo $nachricht;
+
+  }
 
 ?>
+
 
 
 </body>

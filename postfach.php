@@ -59,7 +59,18 @@ if(isset($_GET['register'])) {
   
   echo "<b>Von: </b>".$nuser['vorname']." ".$nuser['nachname']." ".$nuser['email']."<br>".$nuser['nachricht'];
 
+  echo "<form action='?loeschen=$meid' method='post'><input type='submit' name='loeschen' value='Löschen'> </form>"; 
+
 }
+
+if(isset($_GET['loeschen'])) {
+  $meid = $_GET['loeschen'];
+
+  $lmsql = "DELETE FROM emails WHERE eid=?";
+  $cmd= $pdo->prepare($lmsql);
+  $cmd->execute([$meid]);
+}
+
 
 ?>
 

@@ -11,20 +11,20 @@ body {
 .mailbox {
   background: #3e3e3e;
     width: 100%;
-    height: 12vh;
+    height: 100vh;
     position: revert;
     display: flex;
 }
 
 .schreiben {
   width: 40vh;
-    height: 6vh;
+    height: 10vh;
     font-size: 3vh;
 }
 
 .postfach {
   width: 40vh;
-    height: 6vh;
+    height: 10vh;
     font-size: 3vh;
 }
 
@@ -82,10 +82,6 @@ if($showFormular) {
     <form method='GET' action='postfach.php'>
       <input class="postfach" type='submit' value='Postfach'> 
     </form>
-
-</div>
-
-<div>
 
     <form method='GET' action='logout.php'>
       <input class="ausloggen" type='submit' value='Ausloggen'> 

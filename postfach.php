@@ -161,7 +161,7 @@ if(isset($_GET['register'])) {
   $msql = "SELECT users.vorname, users.nachname, users.email, emails.nachricht, emails.betreff FROM emails, users WHERE eid = '$meid' AND users.email = emails.absender";
   $nuser = $pdo->query($msql)->fetch();
   
-  echo "<div class='von'><div class='ichbin'><b>Von: </b>".$nuser['vorname']." ".$nuser['nachname']." &lt;".$nuser['email']."&gt; <input class='delete' type='submit' name='loeschen' value='Löschen' ><div> Betreff: ".$nuser['betreff']."</div></div></div><div class='nachricht'>".$nuser['nachricht']."</div>";
+  echo "<div class='von'><div class='ichbin'><b>Von: </b>".$nuser['vorname']." ".$nuser['nachname']." &lt;".$nuser['email']."&gt; <form action='?loeschen=$meid' method='post'> <input class='delete' type='submit' name='loeschen' value='Löschen' ><div> Betreff: ".$nuser['betreff']."</div></div></div><div class='nachricht'>".$nuser['nachricht']."</div>";
 
   //*echo "<form action='?loeschen=$meid' method='post'><input type='submit' name='loeschen' value='Löschen'> </form>"; //frage für mrp67 bitte mit aipo reden danke 
 
@@ -173,6 +173,8 @@ if(isset($_GET['loeschen'])) {
   $lmsql = "DELETE FROM emails WHERE eid=?";
   $cmd= $pdo->prepare($lmsql);
   $cmd->execute([$meid]);
+
+  echo 'E-Mail wurde gelöscht. <meta http-equiv="refresh" content="3"; URL=postfach.php">';
 }
 ?>
 </div>

@@ -117,7 +117,7 @@ $email = $_SESSION['email'];
 <div class="mailbox">
 
     <form method='GET' action='absenden.php'>
-      <input class="schreiben" type='submit' value='E-Mail schreiben'>
+      <input class="schreiben" type='submit' value='Verfassen '>
     </form>
 
     <form method='GET' action='logout.php'>
@@ -174,7 +174,7 @@ if(isset($_GET['loeschen'])) {
   $cmd= $pdo->prepare($lmsql);
   $cmd->execute([$meid]);
 
-  echo 'E-Mail wurde gelöscht. <meta http-equiv="refresh" content="3"; URL=postfach.php">';
+  echo 'E-Mail wurde gelöscht! <meta http-equiv="refresh" content="1; URL=postfach.php">';
 }
 ?>
 </div>

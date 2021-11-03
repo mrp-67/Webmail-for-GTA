@@ -16,10 +16,12 @@ if(!isset($_SESSION['email'])) {
   die("Sie sind nicht eingeloggt!");
 }
 
+
 if(isset($_GET['absenden'])) {
   $empfaenger = $_POST['empfaenger'];
   $betreff = $_POST['betreff'];
   $message = nl2br($_POST['message']);
+  $error = false;
 
   if($absender == $empfaenger){
     echo 'Sie dürfen an sich selber keine EMails versenden.<br>';
@@ -47,13 +49,14 @@ if(isset($_GET['absenden'])) {
 
     if($result) {        
       $showFormular = false;
-      echo 'Ihr EMail wurde erfolgreich versendet.<br>Sie werden weitergeleitet in 3 Sekunden.<meta http-equiv="refresh" content="5; URL=overview.php">';
+      echo 'Ihr EMail wurde erfolgreich versendet.<br>Sie werden weitergeleitet in 3 Sekunden.<meta http-equiv="refresh" content="3; URL=postfach.php">';
     }else {
-      echo 'Ihr EMail konnte nicht zugestellt werden, probieren Sie es bitte zu einem anderen Zeitpunkt nochmal.<meta http-equiv="refresh" content="5; URL=overview.php"> <br>';
+      echo 'Ihr EMail konnte nicht zugestellt werden, probieren Sie es bitte zu einem anderen Zeitpunkt nochmal.<meta http-equiv="refresh" content="3; URL=postfach.php"> <br>';
     }
 
   }
 }
+if($showFormular) {
 ?>
 
 <form class="contact-form" action="?absenden" method="post">
@@ -62,6 +65,9 @@ if(isset($_GET['absenden'])) {
 <textarea name="message" placeholder="Nachricht"> </textarea>
 <button type="submit" value="Absenden">
 </form>
+<?php
+}
+?>
 
 </body>
 </html>

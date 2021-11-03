@@ -117,7 +117,7 @@ $email = $_SESSION['email'];
 <div class="mailbox">
 
     <form method='GET' action='absenden.php'>
-      <input class="schreiben" type='submit' value='Verfassen '>
+      <input class="schreiben" type='submit' value='Verfassen'>
     </form>
 
     <form method='GET' action='logout.php'>

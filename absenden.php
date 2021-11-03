@@ -3,6 +3,64 @@
 <head>
 <meta charset="UTF-8">
 <title>Absenden</title>
+<style>
+  body {
+    margin: 0;
+    font-size: 2vh;
+    font-family: arial;
+    background-color: #3a3a3a;
+    color: white;
+  }
+
+  .texts {
+    display: flex;
+  }
+
+  .hallo {
+    width: 26vh;
+    text-align: end;
+  }
+
+  .mailtext {
+    width: 100%;
+    border: 0;
+    background-color: #3a3a3a;
+    font-size: 2vh;
+    color: white;
+    padding: 2vh;
+  }
+
+  .betrefftext {
+    width: 100%;
+    border: 0;
+    background-color: #3a3a3a;
+    font-size: 2vh;
+    padding: 2vh;
+    color: white;
+  }
+
+  .nachrichttext {
+    width: 100%;
+    height: 75vh;
+    border: 0px;
+    background-color: rgb(58, 58, 58);
+    font-size: 2vh;
+    color: white;
+    padding: 2vh;
+    margin: 0px;
+  }
+
+  .bittonn {
+    width: 20vh;
+    height: 4vh;
+    position: absolute;
+    right: 2vh;
+    background: #066200;
+    border: 0;
+    border-radius: 5px;
+    color: white;
+  }
+</style> 
 </head>
 <body>
 
@@ -59,12 +117,14 @@ if(isset($_GET['absenden'])) {
 if($showFormular) {
 ?>
 
-<form class="contact-form" action="?absenden" method="post">
-<input type="text" name="empfaenger">
-<input type="text" name="betreff">
-<textarea name="message" placeholder="Nachricht"> </textarea>
-<button type="submit" value="Absenden">
-</form>
+
+
+<div><p></p><form class="contact-form" action="?absenden" method="post"></div>
+<div class="texts"><p class="hallo">Mail :</p><input class="mailtext" type="text" name="empfaenger" placeholder="Mail"></div>
+<div class="texts"><p class="hallo">Betreff :</p><input class="betrefftext" type="text" name="betreff"  placeholder="Betreff"></div>
+<div class="texts"><p class="hallo">Nachricht :</p><textarea class="nachrichttext" name="message" max="1024" placeholder="Nachricht"> </textarea></div>
+<div><p></p><button class="bittonn" type="submit" value="Absenden">Absenden</button></div>
+</form></div>
 <?php
 }
 ?>

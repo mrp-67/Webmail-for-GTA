@@ -20,6 +20,7 @@ $email = $_SESSION['email'];
       margin: 0;
       color: white;
       font-family: arial;
+      background-color: #424242;
     }
 
     .mailbox {

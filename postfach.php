@@ -10,6 +10,7 @@ $email = $_SESSION['email'];
 <!DOCTYPE html> 
 <html> 
 <head>
+<meta name="robots" content="noindex, nofollow, noimageindex, noarchive, nocache, nositelinkssearchbox, nopagereadaloud, notranslate" />
   <meta charset="UTF-8">
   <title>Postfach</title>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">

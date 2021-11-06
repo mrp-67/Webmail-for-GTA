@@ -30,6 +30,7 @@ if(isset($_GET['login'])) {
 <!DOCTYPE html> 
 <html> 
 <head>
+<meta name="robots" content="noindex, nofollow, noimageindex, noarchive, nocache, nositelinkssearchbox, nopagereadaloud, notranslate" />
 <meta charset="UTF-8">
   <title>Login</title>  
   <style>

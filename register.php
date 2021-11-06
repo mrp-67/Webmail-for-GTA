@@ -6,6 +6,7 @@ session_start();
 <!DOCTYPE html> 
 <html> 
 <head>
+<meta name="robots" content="noindex, nofollow, noimageindex, noarchive, nocache, nositelinkssearchbox, nopagereadaloud, notranslate" />
   <meta charset="UTF-8">
   <title>Registrierung</title>  
   <style>
@@ -34,6 +35,7 @@ session_start();
         height: 3vh;
         text-align: center;
         margin: 1vh auto;
+        content: '@reality.rp';
       }
 
       .password {
@@ -99,7 +101,7 @@ $showFormular = true; //Variable ob das Registrierungsformular anezeigt werden s
  
 if(isset($_GET['register'])) {
     $error = false;
-    $email = $_POST['email'];
+    $email = $_POST['email'] . "@reality.rp";
     $passwort = $_POST['passwort'];
     $passwort2 = $_POST['passwort2'];
     $vorname = $_POST['vorname'];
@@ -163,7 +165,7 @@ if($showFormular) {
 
     <input class="text" type="text" size="40" maxlength="250" name="nachname" placeholder="Nachname">
 
-    <input class="email" type="email" size="40" maxlength="250" name="email" placeholder="E-Mail">
+    <input class="email" type="text" size="40" maxlength="250" name="email" placeholder="E-Mail">
     
     <br>
     <input class="password" type="password" size="40"  maxlength="250" name="passwort" placeholder="Passwort">

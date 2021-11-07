@@ -35,7 +35,6 @@ session_start();
         height: 3vh;
         text-align: center;
         margin: 1vh auto;
-        content: '@reality.rp';
       }
 
       .password {
@@ -164,10 +163,10 @@ if($showFormular) {
     <input class="text" type="text" size="40" maxlength="250" name="vorname" placeholder="Vorname">
 
     <input class="text" type="text" size="40" maxlength="250" name="nachname" placeholder="Nachname">
-
-    <input class="email" type="text" size="40" maxlength="250" name="email" placeholder="E-Mail">
-    
     <br>
+    <br>
+    <input class="email" type="text" size="40" maxlength="250" name="email" placeholder="E-Mail">
+
     <input class="password" type="password" size="40"  maxlength="250" name="passwort" placeholder="Passwort">
     
     <br>

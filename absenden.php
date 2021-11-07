@@ -8,7 +8,7 @@
     margin: 0;
     font-size: 2vh;
     font-family: arial;
-    background-color: #3a3a3a;
+    background-color: #424242;
     color: white;
   }
 
@@ -19,12 +19,13 @@
   .hallo {
     width: 26vh;
     text-align: end;
+    padding-right: 2vh;
   }
 
   .mailtext {
     width: 100%;
     border: 0;
-    background-color: #3a3a3a;
+    background-color: #424242;
     font-size: 2vh;
     color: white;
     padding: 2vh;
@@ -33,7 +34,7 @@
   .betrefftext {
     width: 100%;
     border: 0;
-    background-color: #3a3a3a;
+    background-color: #424242;
     font-size: 2vh;
     padding: 2vh;
     color: white;
@@ -60,6 +61,12 @@
     border-radius: 5px;
     color: white;
   }
+
+  .ppp {
+    position: absolute;
+    left: 4vh;
+    bottom: 0vh;
+  }
 </style> 
 </head>
 <body>
@@ -82,19 +89,19 @@ if(isset($_GET['absenden'])) {
   $error = false;
 
   if($absender == $empfaenger){
-    echo 'Sie dürfen an sich selber keine EMails versenden.<br>';
+    echo '<p class="ppp">Sie dürfen an sich selber keine EMails versenden.</p>';
     $error = true;
   }
   elseif(strlen($empfaenger) == 0) {
-    echo 'Bitte geben Sie den Empfänger ein.<br>';
+    echo '<p class="ppp">Bitte geben Sie den Empfänger ein.</p>';
     $error = true;
   }    
   elseif(strlen($betreff) == 0) {
-    echo 'Bitte geben Sie ein Betreff ein.<br>';
+    echo '<p class="ppp">Bitte geben Sie ein Betreff ein.</p>';
     $error = true;
   }    
   elseif(strlen($message) == 0) {
-    echo 'Sie dürfen keine leere E-Mails versenden.<br>';
+    echo '<p class="ppp">Sie dürfen keine leere E-Mails versenden.</p>';
     $error = true;
   }
 

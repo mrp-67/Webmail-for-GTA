@@ -38,25 +38,33 @@ if(isset($_GET['login'])) {
         display: grid;
         width: 100%;
         height: 100%;
+        background-color: #424242;
+        font-family: arial;
       }
 
       .form {
         margin: auto;
-        margin-top: 23%;
+        margin-top: 14%;
       }
 
       .email {
-        width: 26vh;
-        height: 3vh;
+        width: 35vh;
+        height: 5vh;
         text-align: center;
         margin: 1vh 0;
+        border: 0;
+    border-radius: 5px;
+    font-size: 2vh;
       }
 
       .password {
-        width: 26vh;
-        height: 3vh;
+        width: 35vh;
+        height: 5vh;
         text-align: center;
         margin: 1vh 0;
+        border: 0;
+    border-radius: 5px;
+    font-size: 2vh;
       }
 
       .submit {
@@ -70,25 +78,33 @@ if(isset($_GET['login'])) {
       }
 
       div {
-        background: #ffc107;
-        height: auto;
-        width: auto;
-        margin: auto;
-        display: flex;
-        margin-top: 12vh;
-        position: fixed;
-        border-radius: 5px;
+    height: auto;
+    width: auto;
+    margin: auto;
+    display: flex;
+    margin-top: 12vh;
+    border-radius: 5px;
+    position: initial;
       }
 
       p {
         text-align: center;
-        width: auto;
-        height: auto;
-        padding: 0.6vh 4vh;
-        color: #ff0000;
-        font-size: 20px;
-        margin: -2vh;
-        font-family: arial;
+    width: auto;
+    height: auto;
+    padding: 1vh 4vh;
+    color: #ff0000;
+    font-size: 20px;
+    margin: -2vh;
+    font-family: arial;
+    background: #ffc107;
+    border-radius: 5px;
+      }
+
+      .mrp67 {
+        text-align: center;
+    width: 100%;
+    text-decoration-line: blink;
+    color: #ffc107;
       }
 
   </style>  
@@ -113,7 +129,7 @@ if($showFormular) {
     
     <input class="submit" type="submit" value="Login">
 
-    <p> <a href="register.php"><font style="font-size: 1.5vh;" size="-2">Kostenlos registrieren!</font></a></p>
+    <div style="margin-top: 3vh;"> <a href="register.php" class="mrp67"> <font style="font-size: 1.5vh;" size="-2">Kostenlos registrieren!</font> </a> </div>
 
 
 </form> 

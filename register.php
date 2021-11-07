@@ -14,40 +14,50 @@ session_start();
         display: grid;
         width: 100%;
         height: 100%;
+        background-color: #424242;
+        font-family: arial;
       }
 
       .form {
         margin: auto;
-        margin-top: 18%;
+        margin-top: 10%;
         display: grid;
       }
 
       .text {
-        width: 26vh;
-        height: 3vh;
+        width: 35vh;
+        height: 5vh;
         text-align: center;
         margin: 1vh auto;
+        border: 0;
+        border-radius: 5px;
+        font-size: 2vh;
       }
 
       .email {
-        width: 26vh;
-        height: 3vh;
+        width: 35vh;
+        height: 5vh;
         text-align: center;
         margin: 1vh auto;
+        border: 0;
+        border-radius: 5px;
+        font-size: 2vh;
       }
 
       .password {
-        width: 26vh;
-        height: 3vh;
+        width: 35vh;
+        height: 5vh;
         text-align: center;
         margin: 1vh auto;
+        border: 0;
+        border-radius: 5px;
+        font-size: 2vh;
       }
 
       .submit {
-        margin: 3vh auto;
         display: flex;
         font-size: 2vh;
-        padding: 1vh 6vh;
+        padding: 1vh 3vh;
         border: 0;
         background: #ffc107;
         border-radius: 5px;
@@ -59,8 +69,7 @@ session_start();
         width: auto;
         margin: auto;
         display: flex;
-        margin-top: 12vh;
-        position: fixed;
+        margin-top: 10vh;
         border-radius: 5px;
       }
 
@@ -106,23 +115,23 @@ if(isset($_GET['register'])) {
     $nachname = $_POST['nachname'];
   
     if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        echo '<div><p>Bitte eine gültige E-Mail-Adresse eingeben<p></div><br>';
+        echo '<div><p>Bitte eine gültige E-Mail-Adresse eingeben</p></div><br>';
         $error = true;
     }    
     elseif(strlen($vorname) == 0) {
-      echo '<div><p>Bitte geben Sie ihre Vorname an.<p></div><br>';
+      echo '<div><p>Bitte geben Sie ihre Vorname an.</p></div><br>';
       $error = true;
     }
     elseif(strlen($nachname) == 0) {
-      echo '<div><p>Bitte geben Sie ihre Nachname an.<p></div><br>';
+      echo '<div><p>Bitte geben Sie ihre Nachname an.</p></div><br>';
       $error = true;
     }  
     elseif(strlen($passwort) == 0) {
-      echo '<div><p>Bitte ein Passwort angeben<p></div><br>';
+      echo '<div><p>Bitte ein Passwort angeben</p></div><br>';
       $error = true;
     }
     elseif($passwort != $passwort2) {
-      echo '<div><p>Die Passwörter müssen übereinstimmen<p></div><br>';
+      echo '<div><p>Die Passwörter müssen übereinstimmen</p></div><br>';
       $error = true;
     }
     
@@ -133,7 +142,7 @@ if(isset($_GET['register'])) {
         $user = $statement->fetch();
         
         if($user !== false) {
-            echo '<div><p>Diese E-Mail-Adresse ist bereits vergeben<p></div><br>';
+            echo '<div><p>Diese E-Mail-Adresse ist bereits vergeben</p></div><br>';
             $error = true;
         }    
     }
@@ -146,10 +155,10 @@ if(isset($_GET['register'])) {
         $result = $statement->execute(array('email' => $email, 'passwort' => $passwort_hash, 'vorname' => $vorname, 'nachname' => $nachname));
         
         if($result) {        
-            echo '<div><p>Sie haben ihr E-Mail-Konto erfolgreich angelegt.<br>Sie werden in 3 Sekunden automatisch weitergeleitet. <meta http-equiv="refresh" content="3; URL=index.php"><br>';
+            echo '<div><p>Sie haben ihr E-Mail-Konto erfolgreich angelegt.<br>Sie werden in 3 Sekunden automatisch weitergeleitet. </p><meta http-equiv="refresh" content="3; URL=index.php"><br>';
             $showFormular = false;
         } else {
-            echo '<div><p>Beim Abspeichern ist leider ein Fehler aufgetreten<p></div><br>';
+            echo '<div><p>Beim Abspeichern ist leider ein Fehler aufgetreten</p></div><br>';
         }
     } 
 }
@@ -158,17 +167,14 @@ if($showFormular) {
 ?>
  
 <form class="form" action="?register=1" method="post">
-    <br>
     <input class="text" type="text" size="40" maxlength="250" name="vorname" placeholder="Vorname">
 
     <input class="text" type="text" size="40" maxlength="250" name="nachname" placeholder="Nachname">
 
     <input class="email" type="email" size="40" maxlength="250" name="email" placeholder="E-Mail">
     
-    <br>
     <input class="password" type="password" size="40"  maxlength="250" name="passwort" placeholder="Passwort">
     
-    <br>
     <input class="password" type="password" size="40" maxlength="250" name="passwort2" placeholder="Passwort"><br>
     
     <input class="submit" type="submit" value="Ich stimme zu. Jetzt E-Mail-Konto anlegen.">

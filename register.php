@@ -6,6 +6,7 @@ session_start();
 <!DOCTYPE html> 
 <html> 
 <head>
+<meta name="robots" content="noindex, nofollow, noimageindex, noarchive, nocache, nositelinkssearchbox, nopagereadaloud, notranslate" />
   <meta charset="UTF-8">
   <title>Registrierung</title>  
   <style>
@@ -14,50 +15,40 @@ session_start();
         display: grid;
         width: 100%;
         height: 100%;
-        background-color: #424242;
-        font-family: arial;
       }
 
       .form {
         margin: auto;
-        margin-top: 10%;
+        margin-top: 18%;
         display: grid;
       }
 
       .text {
-        width: 35vh;
-        height: 5vh;
+        width: 26vh;
+        height: 3vh;
         text-align: center;
         margin: 1vh auto;
-        border: 0;
-        border-radius: 5px;
-        font-size: 2vh;
       }
 
       .email {
-        width: 35vh;
-        height: 5vh;
+        width: 26vh;
+        height: 3vh;
         text-align: center;
         margin: 1vh auto;
-        border: 0;
-        border-radius: 5px;
-        font-size: 2vh;
       }
 
       .password {
-        width: 35vh;
-        height: 5vh;
+        width: 26vh;
+        height: 3vh;
         text-align: center;
         margin: 1vh auto;
-        border: 0;
-        border-radius: 5px;
-        font-size: 2vh;
       }
 
       .submit {
+        margin: 3vh auto;
         display: flex;
         font-size: 2vh;
-        padding: 1vh 3vh;
+        padding: 1vh 6vh;
         border: 0;
         background: #ffc107;
         border-radius: 5px;
@@ -69,7 +60,8 @@ session_start();
         width: auto;
         margin: auto;
         display: flex;
-        margin-top: 10vh;
+        margin-top: 12vh;
+        position: fixed;
         border-radius: 5px;
       }
 
@@ -108,30 +100,30 @@ $showFormular = true; //Variable ob das Registrierungsformular anezeigt werden s
  
 if(isset($_GET['register'])) {
     $error = false;
-    $email = $_POST['email'];
+    $email = $_POST['email'] . "@reality.rp";
     $passwort = $_POST['passwort'];
     $passwort2 = $_POST['passwort2'];
     $vorname = $_POST['vorname'];
     $nachname = $_POST['nachname'];
   
     if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        echo '<div><p>Bitte eine gültige E-Mail-Adresse eingeben</p></div><br>';
+        echo '<div><p>Bitte eine gültige E-Mail-Adresse eingeben<p></div><br>';
         $error = true;
     }    
     elseif(strlen($vorname) == 0) {
-      echo '<div><p>Bitte geben Sie ihre Vorname an.</p></div><br>';
+      echo '<div><p>Bitte geben Sie ihre Vorname an.<p></div><br>';
       $error = true;
     }
     elseif(strlen($nachname) == 0) {
-      echo '<div><p>Bitte geben Sie ihre Nachname an.</p></div><br>';
+      echo '<div><p>Bitte geben Sie ihre Nachname an.<p></div><br>';
       $error = true;
     }  
     elseif(strlen($passwort) == 0) {
-      echo '<div><p>Bitte ein Passwort angeben</p></div><br>';
+      echo '<div><p>Bitte ein Passwort angeben<p></div><br>';
       $error = true;
     }
     elseif($passwort != $passwort2) {
-      echo '<div><p>Die Passwörter müssen übereinstimmen</p></div><br>';
+      echo '<div><p>Die Passwörter müssen übereinstimmen<p></div><br>';
       $error = true;
     }
     
@@ -142,7 +134,7 @@ if(isset($_GET['register'])) {
         $user = $statement->fetch();
         
         if($user !== false) {
-            echo '<div><p>Diese E-Mail-Adresse ist bereits vergeben</p></div><br>';
+            echo '<div><p>Diese E-Mail-Adresse ist bereits vergeben<p></div><br>';
             $error = true;
         }    
     }
@@ -155,10 +147,10 @@ if(isset($_GET['register'])) {
         $result = $statement->execute(array('email' => $email, 'passwort' => $passwort_hash, 'vorname' => $vorname, 'nachname' => $nachname));
         
         if($result) {        
-            echo '<div><p>Sie haben ihr E-Mail-Konto erfolgreich angelegt.<br>Sie werden in 3 Sekunden automatisch weitergeleitet. </p><meta http-equiv="refresh" content="3; URL=index.php"><br>';
+            echo '<div><p>Sie haben ihr E-Mail-Konto erfolgreich angelegt.<br>Sie werden in 3 Sekunden automatisch weitergeleitet. <meta http-equiv="refresh" content="3; URL=index.php"><br>';
             $showFormular = false;
         } else {
-            echo '<div><p>Beim Abspeichern ist leider ein Fehler aufgetreten</p></div><br>';
+            echo '<div><p>Beim Abspeichern ist leider ein Fehler aufgetreten<p></div><br>';
         }
     } 
 }
@@ -167,14 +159,17 @@ if($showFormular) {
 ?>
  
 <form class="form" action="?register=1" method="post">
+    <br>
     <input class="text" type="text" size="40" maxlength="250" name="vorname" placeholder="Vorname">
 
     <input class="text" type="text" size="40" maxlength="250" name="nachname" placeholder="Nachname">
+    <br>
+    <br>
+    <input class="email" type="text" size="40" maxlength="250" name="email" placeholder="E-Mail">
 
-    <input class="email" type="email" size="40" maxlength="250" name="email" placeholder="E-Mail">
-    
     <input class="password" type="password" size="40"  maxlength="250" name="passwort" placeholder="Passwort">
     
+    <br>
     <input class="password" type="password" size="40" maxlength="250" name="passwort2" placeholder="Passwort"><br>
     
     <input class="submit" type="submit" value="Ich stimme zu. Jetzt E-Mail-Konto anlegen.">

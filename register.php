@@ -54,7 +54,7 @@ session_start();
         border-radius: 5px;
       }
 
-      div {
+      .div {
         background: #ffc107;
         height: auto;
         width: auto;
@@ -159,18 +159,20 @@ if($showFormular) {
 ?>
  
 <form class="form" action="?register=1" method="post">
-    <br>
-    <input class="text" type="text" size="40" maxlength="250" name="vorname" placeholder="Vorname">
+    <div>
+      <input class="text" type="text" size="40" maxlength="250" name="vorname" placeholder="Vorname">
+      <input class="text" type="text" size="40" maxlength="250" name="nachname" placeholder="Nachname">
+    </div>
 
-    <input class="text" type="text" size="40" maxlength="250" name="nachname" placeholder="Nachname">
-    <br>
-    <br>
-    <input class="email" type="text" size="40" maxlength="250" name="email" placeholder="E-Mail">
+    <div>
+      <input class="email" type="text" size="40" maxlength="250" name="email" placeholder="E-Mail">
+      <p>1vh</p>
+    </div>
 
+    <div>
     <input class="password" type="password" size="40"  maxlength="250" name="passwort" placeholder="Passwort">
-    
-    <br>
-    <input class="password" type="password" size="40" maxlength="250" name="passwort2" placeholder="Passwort"><br>
+    <input class="password" type="password" size="40" maxlength="250" name="passwort2" placeholder="Passwort">
+    </div>
     
     <input class="submit" type="submit" value="Ich stimme zu. Jetzt E-Mail-Konto anlegen.">
 </form>

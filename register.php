@@ -105,6 +105,7 @@ if(isset($_GET['register'])) {
     $passwort2 = $_POST['passwort2'];
     $vorname = $_POST['vorname'];
     $nachname = $_POST['nachname'];
+    $ip = $_SERVER["REMOTE_ADDR"];
   
     if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         echo '<div><p>Bitte eine gültige E-Mail-Adresse eingeben<p></div><br>';
@@ -143,8 +144,8 @@ if(isset($_GET['register'])) {
     if(!$error) {    
         $passwort_hash = password_hash($passwort, PASSWORD_DEFAULT);
         
-        $statement = $pdo->prepare("INSERT INTO users (email, passwort, vorname, nachname) VALUES (:email, :passwort, :vorname, :nachname)");
-        $result = $statement->execute(array('email' => $email, 'passwort' => $passwort_hash, 'vorname' => $vorname, 'nachname' => $nachname));
+        $statement = $pdo->prepare("INSERT INTO users (email, passwort, vorname, nachname, ip) VALUES (:email, :passwort, :vorname, :nachname, :ip)");
+        $result = $statement->execute(array('email' => $email, 'passwort' => $passwort_hash, 'vorname' => $vorname, 'nachname' => $nachname, 'ip' => $ip));
         
         if($result) {        
             echo '<div><p>Sie haben ihr E-Mail-Konto erfolgreich angelegt.<br>Sie werden in 3 Sekunden automatisch weitergeleitet. <meta http-equiv="refresh" content="3; URL=index.php"><br>';

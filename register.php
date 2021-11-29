@@ -105,7 +105,7 @@ if(isset($_GET['register'])) {
     $passwort2 = $_POST['passwort2'];
     $vorname = $_POST['vorname'];
     $nachname = $_POST['nachname'];
-    $ip = $_SERVER["REMOTE_ADDR"];
+    $ip = $_SERVER["REMOTE_ADDR"]; //Datenschutz erklärung muss auf die Webseite hinzugefügt werden wegen IP Speicherung und allgemein wegen Cookies.
   
     if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         echo '<div><p>Bitte eine gültige E-Mail-Adresse eingeben<p></div><br>';
@@ -167,7 +167,6 @@ if($showFormular) {
 
     <div>
       <input class="email" type="text" size="40" maxlength="250" name="email" placeholder="E-Mail">
-      <p>1vh</p>
     </div>
 
     <div>

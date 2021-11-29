@@ -21,8 +21,30 @@ if(!isset($_SESSION['email'])) {
 
 <?php
 if(isset($_GET['verify'])) {
-    $steamid = "steam:" . $_POST['steamid'];
-    echo $steamid;
+    $error = false;
+    $steamhex = $_POST['steamid'];
+    if(strlen($steamhex) == 0) {
+        echo '<div><p>Bitte geben Sie ihre SteamHex ein.<p></div><br>';
+        $error = true;
+    }
+    
+    $steamid = "steam:" . $steamhex;
+            
+    if(!$error){
+        $suche = array($steamid);
+        $players = strip_tags(file_get_contents('http://launcher.mrp67.de:30120/players.json'));
+            
+        foreach($suche as $value){
+            if(stripos($players, $value) !== false){
+                echo "Sie sind gerade Online.";
+            }
+            else{
+                echo "Sie sind Offline oder die Angegebene SteamHex stimmt nicht!";
+            }
+        } 
+
+    }
+     
 }
 
 ?>

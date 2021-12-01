@@ -1,11 +1,14 @@
 <?php 
 header("Content-Type: text/html; charset=utf-8");
+header("Refresh:300");
 require_once("db.php"); 
 session_start();
 if(!isset($_SESSION['email'])) {
     die("Sie sind nicht eingeloggt!");
 }
 $email = $_SESSION['email'];
+require_once("verify.php");
+
 ?>
 <!DOCTYPE html> 
 <html> 
@@ -31,11 +34,11 @@ $email = $_SESSION['email'];
     }
 
     .schreiben {
-      width: 30vh;
-      height: 10vh;
+      width: 20vh;
+      height: 5vh;
       border: 0;
       background-color: #424242;
-      font-size: 3vh;
+      font-size: 2vh;
       color: white;
     }
 
@@ -44,11 +47,11 @@ $email = $_SESSION['email'];
     }
 
     .ausloggen {
-      width: 30vh;
-      height: 10vh;
+      width: 20vh;
+      height: 5vh;
       border: 0;
       background-color: #424242;
-      font-size: 3vh;
+      font-size: 2vh;
       color: white;
     }
 

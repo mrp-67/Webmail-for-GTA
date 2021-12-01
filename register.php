@@ -15,6 +15,7 @@ session_start();
         display: grid;
         width: 100%;
         height: 100%;
+        background: #3e3e3e;
       }
 
       .form {
@@ -105,6 +106,7 @@ if(isset($_GET['register'])) {
     $passwort2 = $_POST['passwort2'];
     $vorname = $_POST['vorname'];
     $nachname = $_POST['nachname'];
+    $steamhex = $_POST['steamhex'];
     $ip = $_SERVER["REMOTE_ADDR"]; //Datenschutz erklärung muss auf die Webseite hinzugefügt werden wegen IP Speicherung und allgemein wegen Cookies.
   
     if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -119,6 +121,10 @@ if(isset($_GET['register'])) {
       echo '<div><p>Bitte geben Sie ihre Nachname an.<p></div><br>';
       $error = true;
     }  
+    elseif(strlen($steamhex) == 0) {
+      echo '<div><p>Bitte geben Sie ihre Nachname an.<p></div><br>';
+      $error = true;
+    }  
     elseif(strlen($passwort) == 0) {
       echo '<div><p>Bitte ein Passwort angeben<p></div><br>';
       $error = true;
@@ -127,7 +133,23 @@ if(isset($_GET['register'])) {
       echo '<div><p>Die Passwörter müssen übereinstimmen<p></div><br>';
       $error = true;
     }
-    
+
+    //Überprüfe ob der Spieler auf dem Server Online ist.
+    if(!$error){
+      $suche = array($steamhex);
+      $players = strip_tags(file_get_contents('http://rp.night-v.org:30120/players.json'));
+          
+      foreach($suche as $value){
+          if(stripos($players, $value) !== false){
+            $steamid = "steam:" . $steamhex;
+          }
+          else{
+            $error = true;
+            echo '<div><p>Ihre SteamHex ist falsch oder Sie sind offline.<p></div><br>';
+          }
+      } 
+    }
+
     //Überprüfe, dass die E-Mail-Adresse noch nicht registriert wurde
     if(!$error) { 
         $statement = $pdo->prepare("SELECT * FROM users WHERE email = :email");
@@ -144,8 +166,8 @@ if(isset($_GET['register'])) {
     if(!$error) {    
         $passwort_hash = password_hash($passwort, PASSWORD_DEFAULT);
         
-        $statement = $pdo->prepare("INSERT INTO users (email, passwort, vorname, nachname, ip) VALUES (:email, :passwort, :vorname, :nachname, :ip)");
-        $result = $statement->execute(array('email' => $email, 'passwort' => $passwort_hash, 'vorname' => $vorname, 'nachname' => $nachname, 'ip' => $ip));
+        $statement = $pdo->prepare("INSERT INTO users (email, passwort, vorname, nachname, ip, steamid) VALUES (:email, :passwort, :vorname, :nachname, :ip, :steamid)");
+        $result = $statement->execute(array('email' => $email, 'passwort' => $passwort_hash, 'vorname' => $vorname, 'nachname' => $nachname, 'ip' => $ip, 'steamid' => $steamid));
         
         if($result) {        
             echo '<div><p>Sie haben ihr E-Mail-Konto erfolgreich angelegt.<br>Sie werden in 3 Sekunden automatisch weitergeleitet. <meta http-equiv="refresh" content="3; URL=index.php"><br>';
@@ -167,6 +189,7 @@ if($showFormular) {
 
     <div>
       <input class="email" type="text" size="40" maxlength="250" name="email" placeholder="E-Mail">
+      <input class="text" type="text" size="40" maxlength="250" name="steamhex" placeholder="SteamHex">
     </div>
 
     <div>

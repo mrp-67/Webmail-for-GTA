@@ -18,7 +18,7 @@
   }
 
   .hallo {
-    width: 26vh;
+    width: 12vh;
     text-align: end;
     padding-right: 2vh;
   }
@@ -42,8 +42,8 @@
   }
 
   .nachrichttext {
-    width: 100%;
-    height: 75vh;
+    width: 90%;
+    height: 70vh;
     border: 0px;
     background-color: rgb(58, 58, 58);
     font-size: 2vh;
@@ -74,6 +74,7 @@
 
 <?php
 header("Content-Type: text/html; charset=utf-8");
+header("Refresh:600");
 require_once("db.php"); 
 session_start();
 
@@ -82,6 +83,8 @@ if(!isset($_SESSION['email'])) {
   die("Sie sind nicht eingeloggt!");
 }
 
+$email = $_SESSION['email'];
+require_once("verify.php");
 
 if(isset($_GET['absenden'])) {
   $empfaenger = $_POST['empfaenger'];

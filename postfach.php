@@ -19,7 +19,7 @@ require_once("verify.php");
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <style>  
 
-    body {
+    body{
       display: flex;
       margin: 0;
       color: white;
@@ -27,13 +27,13 @@ require_once("verify.php");
       background-color: #424242;
     }
 
-    .mailbox {
+    .mailbox{
       width: 30vh;
       height: 100vh;
       background-color: #424242;
     }
 
-    .schreiben {
+    .schreiben{
       width: 20vh;
       height: 5vh;
       border: 0;
@@ -42,11 +42,11 @@ require_once("verify.php");
       color: white;
     }
 
-    .schreiben:hover {
+    .schreiben:hover{
       background-color: #565656;
     }
 
-    .ausloggen {
+    .ausloggen{
       width: 20vh;
       height: 5vh;
       border: 0;
@@ -55,11 +55,11 @@ require_once("verify.php");
       color: white;
     }
 
-    .ausloggen:hover {
+    .ausloggen:hover{
       background-color: #565656;
     }
 
-    .hallo {
+    .hallo{
       width: 30vh;
       height: 8vh;
       border-bottom: inset;
@@ -67,11 +67,11 @@ require_once("verify.php");
       border-bottom-width: 1px;
     }
 
-    .hallo:hover {
+    .hallo:hover{
       background: #343434;
     }
 
-    .test {
+    .test{
       position: absolute;
       width: 30vh;
       height: 8vh;
@@ -80,38 +80,38 @@ require_once("verify.php");
       margin: -2vh;
     }
 
-    .boxx {
+    .boxx{
       padding: 2vh;
     }
 
-    .absender {
+    .absender{
       width: 100%;
 
     }
 
-    .von {
+    .von{
       background-color: #424242;
       height: 10vh;
     }
 
-    .delete {
+    .delete{
       position: absolute;
       right: 2vh;
     }
 
-    .nachricht {
+    .nachricht{
       background: #2e2e2e;
       height: 87.3vh;
       padding: 2.7vh 0 0 2.7vh;
       font-size: 2vh;
     }
 
-    .ichbin {
+    .ichbin{
       padding: 2.7vh;
       font-size: 2vh;
     }
 
-    b {
+    b{
       margin: 0 0 0 2vh;
     }
       
@@ -119,10 +119,18 @@ require_once("verify.php");
 </head> 
 <body>
 
+<?php
+  if($showFormular){
+?>
+
 <div class="mailbox">
 
     <form method='GET' action='absenden.php'>
       <input class="schreiben" type='submit' value='Verfassen'>
+    </form>
+
+    <form method='GET' action='postfach.php'>
+      <input class="schreiben" type='submit' value='Aktualisieren'>
     </form>
 
     <form method='GET' action='logout.php'>
@@ -134,11 +142,6 @@ require_once("verify.php");
 
 <div style="background: #2e2e2e;    font-size: 1.8vh;">
 <?php
-
-/*$sql = "SELECT * FROM emails WHERE empfaenger = '$email'";
-foreach ($pdo->query($sql) as $row){
-  echo $row['absender']."<br>".$row['betreff']."<br> <br>";
-}*/
 
 //get emails from db for overview
 $sql = "SELECT emails.eid, emails.absender, emails.betreff FROM emails WHERE empfaenger = '$email' ORDER BY eid DESC";
@@ -182,6 +185,10 @@ if(isset($_GET['loeschen'])) {
   echo 'E-Mail wurde gelöscht! <meta http-equiv="refresh" content="1; URL=postfach.php">';
 }
 ?>
+<?php
+  } //showFormular
+?>
+
 </div>
 
 </body>

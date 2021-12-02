@@ -127,7 +127,7 @@ if(isset($errorMessage)){
 ?>
 
 <form class="form" action="?login=1" method="post">
-  <div> <img class="logo" src="image/logo.png" alt="logo"> </div>
+  <div> <img class="logo" src="img/logo.png" alt="logo"> </div>
   <br> <input class="email" type="email" size="40" maxlength="250" name="email" placeholder="E-Mail"> <br>
   <input class="password" type="password" size="40"  maxlength="250" name="passwort" placeholder="Passwort"><br>
   <input class="submit" type="submit" value="Login">

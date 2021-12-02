@@ -136,6 +136,11 @@ if($showFormular) {
 <div class="texts"><p class="hallo">Nachricht :</p><textarea class="nachrichttext" name="message" max="1024" placeholder="Nachricht"> </textarea></div>
 <div><p></p><button class="bittonn" type="submit" value="Absenden">Absenden</button></div>
 </form></div>
+
+<form method='GET' action='postfach.php'>
+  <input class="abbrechen" type='submit' value='Abbrechen'>
+</form>
+
 <?php
 }
 ?>

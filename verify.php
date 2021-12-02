@@ -1,22 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta name="robots" content="noindex, nofollow, noimageindex, noarchive, nocache, nositelinkssearchbox, nopagereadaloud, notranslate" />
-    <meta charset="UTF-8">
-    <style>
-      div{
-        height: auto;
-        width: auto;
-        margin: auto;
-        display: flex;
-        margin-top: 12vh;
-        border-radius: 5px;
-        position: initial;
-      }
-    </style>
-</head>
-<body>
-  <?php 
+<?php 
     if(isset($_SESSION['email'])) {
       $sql = "SELECT * FROM users WHERE email = '$email'";
       $user = $pdo->query($sql)->fetch();
@@ -36,8 +18,5 @@
         } 
     }
   ?>
-
-</body>
-</html>
 
 

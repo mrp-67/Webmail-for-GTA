@@ -34,7 +34,7 @@ If ($check) {
 
 } Else {
   $showFormular = false;
-  echo '<div>Aktuell sind unsere Server unter Wartungsarbeiten.<br>Mehr Informationen dazu findest du auf unserem Discord-Server.</div><meta http-equiv="refresh" content="5; URL=logout.php">';
+  echo '<div>Unser Gameserver wird derzeit gewartet.<br> Mehr Informationen finden Sie auf unserem Discord-Server.</div><meta http-equiv="refresh" content="5; URL=logout.php">';
 }
 
 ?>

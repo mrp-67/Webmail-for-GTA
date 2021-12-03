@@ -120,7 +120,7 @@ If ($check) {
 } Else {
   $showFormular = false;
   $error = true;
-  echo'Unser Gameserver werden derzeit gewartet.<br> Mehr Informationen finden Sie auf unserem Discord-Server <meta http-equiv="refresh" content="6; URL=https://night-v.org">';
+  echo'Unser Gameserver wird derzeit gewartet.<br> Mehr Informationen finden Sie auf unserem Discord-Server.<meta http-equiv="refresh" content="6; URL=https://night-v.org">';
 }
 
 if(isset($_GET['register'])) {

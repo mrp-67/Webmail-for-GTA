@@ -111,6 +111,10 @@ if(isset($_GET['login'])) {
       color: #ffc107;
     }
 
+    .logo {
+      
+    }
+
     .logo{
       width: 30vh;
       height: auto;

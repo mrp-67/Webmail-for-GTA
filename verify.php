@@ -1,3 +1,14 @@
+<style>
+  div{
+            height: auto;
+            width: auto;
+            margin: auto;
+            display: flex;
+            margin-top: 12vh;
+            border-radius: 5px;
+            position: initial;
+        }
+</style>
 <?php 
     if(isset($_SESSION['email'])) {
       $sql = "SELECT * FROM users WHERE email = '$email'";

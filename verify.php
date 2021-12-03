@@ -1,28 +1,15 @@
-<style>
-  div{
-    height: auto;
-    width: auto;
-    margin: auto;
-    display: flex;
-    margin-top: 12vh;
-    border-radius: 5px;
-    position: initial;
-  }
-</style>
 <?php
-  if(isset($_SESSION['email'])){
-    $sql = "SELECT * FROM users WHERE email = '$email'";
-    $user = $pdo->query($sql)->fetch();
-    $status = $user['status'];
-      if($status == 1)
-      {
-        $showFormular = false;
-        echo '<div>Ihr Konto wurde gesperrt, bitte melden Sie sich im Support.<br>Sie werden automatisch ausgeloggt.</div><meta http-equiv="refresh" content="5; URL=logout.php">';
-      }
-  
-    }else{
 
-      if(isset($_SESSION['email'])){
+if(isset($_SESSION['email'])){
+  $sql = "SELECT * FROM users WHERE email = '$email'";
+  $user = $pdo->query($sql)->fetch();
+  $status = $user['status'];
+    if($status == 1)
+    {
+      $showFormular = false;
+      echo '<div>Ihr Konto wurde gesperrt, bitte melden Sie sich im Support.<br>Sie werden automatisch ausgeloggt.</div><meta http-equiv="refresh" content="5; URL=logout.php">';
+    }
+    elseif(isset($_SESSION['email'])){
         $sql = "SELECT * FROM users WHERE email = '$email'";
         $user = $pdo->query($sql)->fetch();
         $steamid = $user['steamid'];
@@ -39,8 +26,8 @@
               echo '<div> Sie sind nicht mit unserem Gameserver verbunden.<br> Sie werden automatisch ausgeloggt.</div><meta http-equiv="refresh" content="5; URL=logout.php">';
             }
         } 
-      }
-    }
+    } 
+}
 ?>
 
 

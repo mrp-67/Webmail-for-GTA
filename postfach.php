@@ -60,6 +60,19 @@ require_once("verify.php");
       background-color: #565656;
     }
 
+    .refresh{
+      width: 20vh;
+      height: 5vh;
+      border: 0;
+      background-color: #424242;
+      font-size: 2vh;
+      color: white;
+    }
+
+    .refresh:hover{
+      background-color: #565656;
+    }
+
     .hallo{
       width: 30vh;
       height: 8vh;
@@ -130,12 +143,12 @@ require_once("verify.php");
       <input class="schreiben" type='submit' value='Verfassen'>
     </form>
 
-    <form method='GET' action='postfach.php'>
-      <input class="schreiben" type='submit' value='Aktualisieren'>
-    </form>
-
     <form method='GET' action='logout.php'>
       <input class="ausloggen" type='submit' value='Ausloggen'> 
+    </form>
+
+    <form method='GET' action='postfach.php'>
+      <input class="refresh" type='submit' value='Aktualisieren'> 
     </form>
   
 </div>

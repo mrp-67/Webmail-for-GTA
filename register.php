@@ -20,7 +20,6 @@ session_start();
 
       .form {
         margin: auto;
-        margin-top: 18%;
         display: grid;
       }
 
@@ -95,6 +94,18 @@ session_start();
       a {
         color: #0037ff;
       }
+
+      .logo {
+        display: grid;
+        margin-top: 6%;
+      }
+
+      .logopng {
+        width: 30vh;
+        height: auto;
+        margin: auto;
+      }
+
 
   </style>  
 </head> 
@@ -194,6 +205,10 @@ if(isset($_GET['register'])) {
  
 if($showFormular) {
 ?>
+
+<div class="logo">
+  <img class="logopng" src="img/logo.png" alt="">
+</div>
  
 <form class="form" action="?register=1" method="post">
     <div>

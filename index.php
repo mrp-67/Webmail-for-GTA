@@ -120,6 +120,10 @@ If ($check) {
       color: #ffc107;
     }
 
+    .logo {
+      
+    }
+
     .logo{
       width: 30vh;
       height: auto;

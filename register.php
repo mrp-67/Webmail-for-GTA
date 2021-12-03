@@ -122,6 +122,7 @@ if(isset($_GET['register'])) {
     $vorname = $_POST['vorname'];
     $nachname = $_POST['nachname'];
     $steamhex = $_POST['steamhex'];
+	$status = "0";
     $ip = $_SERVER["REMOTE_ADDR"]; //Datenschutz erklärung muss auf die Webseite hinzugefügt werden wegen IP Speicherung und allgemein wegen Cookies.
   
     if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -181,8 +182,8 @@ if(isset($_GET['register'])) {
     if(!$error) {    
         $passwort_hash = password_hash($passwort, PASSWORD_DEFAULT);
         
-        $statement = $pdo->prepare("INSERT INTO users (email, passwort, vorname, nachname, ip, steamid) VALUES (:email, :passwort, :vorname, :nachname, :ip, :steamid)");
-        $result = $statement->execute(array('email' => $email, 'passwort' => $passwort_hash, 'vorname' => $vorname, 'nachname' => $nachname, 'ip' => $ip, 'steamid' => $steamid));
+        $statement = $pdo->prepare("INSERT INTO users (email, passwort, vorname, nachname, ip, steamid, status) VALUES (:email, :passwort, :vorname, :nachname, :ip, :steamid, :status)");
+        $result = $statement->execute(array('email' => $email, 'passwort' => $passwort_hash, 'vorname' => $vorname, 'nachname' => $nachname, 'ip' => $ip, 'steamid' => $steamid, 'status' => $status));
         
         if($result) {        
             echo '<div><p>Sie haben ihr E-Mail-Konto erfolgreich angelegt.<br>Sie werden in 3 Sekunden automatisch weitergeleitet. <meta http-equiv="refresh" content="3; URL=index.php"><br>';

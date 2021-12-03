@@ -67,6 +67,8 @@ require_once("verify.php");
       background-color: #424242;
       font-size: 2vh;
       color: white;
+      bottom : 0%;
+      position: absolute;
     }
 
     .refresh:hover{
@@ -105,28 +107,38 @@ require_once("verify.php");
 
     .von{
       background-color: #424242;
-      height: 10vh;
+      height: 8vh;
+      border-bottom: inset;
+      border-bottom-color: black;
+      border-bottom-width: 1px;
     }
 
     .delete{
       position: absolute;
       right: 2vh;
+      background-color: transparent;
+      color: white;
+      font-size: 2vh;
+      border: solid;
+      border-radius: 0.5vh;
+      padding: 0.5vh;
+      top: 2vh;
+    }
+
+    .delete:hover {
+      background-color: #565656;
     }
 
     .nachricht{
       background: #2e2e2e;
-      height: 87.3vh;
+      height: 89.2vh;
       padding: 2.7vh 0 0 2.7vh;
       font-size: 2vh;
     }
 
     .ichbin{
-      padding: 2.7vh;
+      padding: 1.7vh;
       font-size: 2vh;
-    }
-
-    b{
-      margin: 0 0 0 2vh;
     }
       
   </style> 
@@ -154,7 +166,7 @@ require_once("verify.php");
 </div>
 
 
-<div style="background: #2e2e2e;    font-size: 1.8vh;">
+<div style="background: #2e2e2e;  font-size: 1.8vh; border-right: inset;  border-right-color: black;  border-right-width: 1px;">
 <?php
 
 //get emails from db for overview

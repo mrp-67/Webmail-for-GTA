@@ -88,6 +88,7 @@ if(isset($_GET['login'])) {
       margin-top: 12vh;
       border-radius: 5px;
       position: initial;
+      justify-content: center;
     }
 
     p{
@@ -128,7 +129,7 @@ if(isset($errorMessage)){
 
 <form class="form" action="?login=1" method="post">
   <div> <img class="logo" src="img/logo.png" alt="logo"> </div>
-  <br> <input class="email" type="email" size="40" maxlength="250" name="email" placeholder="E-Mail"> <br>
+  <br> <input class="email" type="email" size="40" maxlength="250" name="email" placeholder="Nutzername"> <br>
   <input class="password" type="password" size="40"  maxlength="250" name="passwort" placeholder="Passwort"><br>
   <input class="submit" type="submit" value="Login">
   <div style="margin-top: 3vh;"> <a href="register.php" class="mrp67"> <font style="font-size: 1.5vh;" size="-2">Kostenlos registrieren!</font> </a> </div>

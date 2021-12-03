@@ -38,6 +38,10 @@ session_start();
         margin: 1vh auto;
       }
 
+      .suffix {
+
+      }
+
       .password {
         width: 26vh;
         height: 3vh;
@@ -101,7 +105,7 @@ $showFormular = true; //Variable ob das Registrierungsformular anezeigt werden s
  
 if(isset($_GET['register'])) {
     $error = false;
-    $email = $_POST['email'] . "@reality.rp";
+    $email = $_POST['email'] . "@night.v";
     $passwort = $_POST['passwort'];
     $passwort2 = $_POST['passwort2'];
     $vorname = $_POST['vorname'];
@@ -110,19 +114,19 @@ if(isset($_GET['register'])) {
     $ip = $_SERVER["REMOTE_ADDR"]; //Datenschutz erklärung muss auf die Webseite hinzugefügt werden wegen IP Speicherung und allgemein wegen Cookies.
   
     if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        echo '<div><p>Bitte eine gültige E-Mail-Adresse eingeben<p></div><br>';
+        echo '<div><p>Bitte eine gültige Nutzernamen eingeben<p></div><br>';
         $error = true;
     }    
     elseif(strlen($vorname) == 0) {
-      echo '<div><p>Bitte geben Sie ihre Vorname an.<p></div><br>';
+      echo '<div><p>Bitte geben Sie Ihre Vorname an.<p></div><br>';
       $error = true;
     }
     elseif(strlen($nachname) == 0) {
-      echo '<div><p>Bitte geben Sie ihre Nachname an.<p></div><br>';
+      echo '<div><p>Bitte geben Sie Ihre Nachname an.<p></div><br>';
       $error = true;
     }  
     elseif(strlen($steamhex) == 0) {
-      echo '<div><p>Bitte geben Sie ihre Nachname an.<p></div><br>';
+      echo '<div><p>Bitte geben Sie Ihre SteamHex ein.<p></div><br>';
       $error = true;
     }  
     elseif(strlen($passwort) == 0) {
@@ -188,7 +192,7 @@ if($showFormular) {
     </div>
 
     <div>
-      <input class="email" type="text" size="40" maxlength="250" name="email" placeholder="E-Mail">
+      <input class="email" type="text" size="40" maxlength="250" name="email" placeholder="Nutzername">
       <input class="text" type="text" size="40" maxlength="250" name="steamhex" placeholder="SteamHex">
     </div>
 
@@ -197,7 +201,7 @@ if($showFormular) {
     <input class="password" type="password" size="40" maxlength="250" name="passwort2" placeholder="Passwort">
     </div>
     
-    <input class="submit" type="submit" value="Ich stimme zu. Jetzt E-Mail-Konto anlegen.">
+    <input class="submit" type="submit" value="Ich stimme zu. Jetzt E-Mail Konto anlegen.">
 </form>
  
 <?php

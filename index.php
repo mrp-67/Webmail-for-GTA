@@ -27,6 +27,15 @@ if(isset($_GET['login'])) {
     
 }
 
+$url="http://rp.night-v.org:30120/players.json";
+$check = @fsockopen($url, 80);
+If ($check) {
+} Else {
+  $showFormular = false;
+  $error = true;
+  echo'Unser Gameserver werden derzeit gewartet.<br> Mehr Informationen finden Sie auf unserem Discord-Server <meta http-equiv="refresh" content="6; URL=https://night-v.org">';
+}
+
 ?>
 <!DOCTYPE html> 
 <html> 

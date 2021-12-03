@@ -78,11 +78,9 @@ header("Refresh:600");
 require_once("db.php"); 
 session_start();
 
-$absender = $_SESSION['email'];
 if(!isset($_SESSION['email'])) {
-  die("Sie sind nicht eingeloggt!");
+  die('Sie sind nicht eingeloggt! <meta http-equiv="refresh" content="1; URL=index.php">');
 }
-
 $email = $_SESSION['email'];
 require_once("verify.php");
 

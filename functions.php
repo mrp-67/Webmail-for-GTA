@@ -1,8 +1,4 @@
 <?php
-
-$url="http://rp.night-v.org:30120/players.json'";
-$check = @fsockopen($url, 80);
-If ($check) {
   if(isset($_SESSION['email'])){
     $sql = "SELECT * FROM users WHERE email = '$email'";
     $user = $pdo->query($sql)->fetch();
@@ -32,11 +28,17 @@ If ($check) {
       } 
   }
 
-} Else {
-  $showFormular = false;
-  echo '<div>Unser Gameserver wird derzeit gewartet.<br> Mehr Informationen finden Sie auf unserem Discord-Server.</div><meta http-equiv="refresh" content="5; URL=logout.php">';
-}
+  function gameServerStatus(){
 
+    $url = "rp.night-v.org:30120/players.json";
+    $online = @fsockopen ($url, 30120);
+    if (!$online) {
+      $showFormular = false;
+      $error = true;
+      echo '<div>Unser Gameserver wird aktuell gewartet. Weitere Informationen finden Sie auf unserem <a href="https://discord.gg/vNDWcYc6qr"> Discord-Server.</a> </div><meta http-equiv="refresh" content="10; URL=https://night-v.org">';
+    } else {
+      }
+  }
 ?>
 
 

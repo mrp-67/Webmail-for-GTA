@@ -1,14 +1,15 @@
 <?php 
 header("Content-Type: text/html; charset=utf-8");
 header("Refresh:300");
-require_once("db.php"); 
+require_once("db.php");
+
 session_start();
 if(!isset($_SESSION['email'])) {
   die('Sie sind nicht eingeloggt! <meta http-equiv="refresh" content="1; URL=index.php">');
   $showFormular = false;
 }
 $email = $_SESSION['email'];
-require_once("verify.php");
+require_once("functions.php");
 
 ?>
 <!DOCTYPE html> 

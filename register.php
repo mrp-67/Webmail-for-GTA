@@ -1,7 +1,9 @@
 <?php
 header("Content-Type: text/html; charset=utf-8");
-require_once("db.php"); 
+require_once("db.php");
+require_once("functions.php"); 
 session_start();
+gameServerStatus();
 ?>
 <!DOCTYPE html> 
 <html> 
@@ -113,15 +115,6 @@ session_start();
  
 <?php
 $showFormular = true; //Variable ob das Registrierungsformular anezeigt werden soll
-
-$url="http://rp.night-v.org:30120/players.json";
-$check = @fsockopen($url, 80);
-If ($check) {
-} Else {
-  $showFormular = false;
-  $error = true;
-  echo'Unser Gameserver wird derzeit gewartet.<br> Mehr Informationen finden Sie auf unserem Discord-Server.<meta http-equiv="refresh" content="6; URL=https://night-v.org">';
-}
 
 if(isset($_GET['register'])) {
     $error = false;

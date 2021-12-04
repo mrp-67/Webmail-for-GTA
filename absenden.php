@@ -76,13 +76,13 @@
 header("Content-Type: text/html; charset=utf-8");
 header("Refresh:600");
 require_once("db.php"); 
+require_once("functions.php");
 session_start();
 
 if(!isset($_SESSION['email'])) {
   die('Sie sind nicht eingeloggt! <meta http-equiv="refresh" content="1; URL=index.php">');
 }
 $email = $_SESSION['email'];
-require_once("verify.php");
 
 if(isset($_GET['absenden'])) {
   $empfaenger = $_POST['empfaenger'];

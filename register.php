@@ -124,7 +124,7 @@ if(isset($_GET['register'])) {
     $vorname = $_POST['vorname'];
     $nachname = $_POST['nachname'];
     $steamhex = $_POST['steamhex'];
-	$status = "0";
+	  $status = "0";
     $ip = $_SERVER["REMOTE_ADDR"]; //Datenschutz erklärung muss auf die Webseite hinzugefügt werden wegen IP Speicherung und allgemein wegen Cookies.
   
     if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -177,7 +177,17 @@ if(isset($_GET['register'])) {
         if($user !== false) {
             echo '<div><p>Diese E-Mail-Adresse ist bereits vergeben<p></div><br>';
             $error = true;
-        }    
+        }
+          if(!$error) { 
+            $statement = $pdo->prepare("SELECT * FROM users WHERE steamid = :steamid");
+            $result = $statement->execute(array('steamid' => $steamid));
+            $user = $statement->fetch();
+
+            if($user !== false) {
+              echo '<div><p>Diese SteamHex ist bereits vergeben<p></div><br>';
+              $error = true;
+            }     
+          }
     }
     
     //Keine Fehler, wir können den Nutzer registrieren

@@ -124,19 +124,32 @@ if(isset($_GET['absenden'])) {
   }
 }
 if($showFormular) {
+
 ?>
 
-
-
 <div><p></p><form class="contact-form" action="?absenden" method="post"></div>
-<div class="texts"><p class="hallo">Mail :</p><input class="mailtext" type="text" name="empfaenger" placeholder="Mail"></div>
-<div class="texts"><p class="hallo">Betreff :</p><input class="betrefftext" type="text" name="betreff"  placeholder="Betreff"></div>
-<div class="texts"><p class="hallo">Nachricht :</p><textarea class="nachrichttext" name="message" max="1024" placeholder="Nachricht"> </textarea></div>
+<div class="texts"><p class="hallo">Mail :</p><input class="mailtext" type="text" name="empfaenger" value="<?php
+if(isset($_SESSION['answerEmail'])){
+  echo $_SESSION['answerEmail'];
+}
+?>" placeholder="Mail"></div>
+<div class="texts"><p class="hallo">Betreff :</p><input class="betrefftext" type="text" name="betreff" value="<?php 
+if(isset($_SESSION['answerEmail'])){
+  echo $_SESSION['answerBetreff'];
+}
+?>" placeholder="Betreff"></div>
+<div class="texts"><p class="hallo">Nachricht :</p><textarea class="nachrichttext" name="message" max="1024" placeholder="Nachricht">
+<?php 
+if(isset($_SESSION['answerEmail'])){
+  echo $_SESSION['answerNachricht'];
+}
+?> 
+</textarea></div>
 <div><p></p><button class="bittonn" type="submit" value="Absenden">Absenden</button></div>
 </form></div>
 
 <form method='GET' action='postfach.php'>
-  <input class="abbrechen" type='submit' value='Abbrechen'>
+  <input class="abbrechen" type='submit' value='Abbrechen' <?php unsetSessions();?> >
 </form>
 
 <?php

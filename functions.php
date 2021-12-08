@@ -39,6 +39,12 @@
     } else {
       }
   }
+
+  function unsetSessions(){
+    unset($_SESSION['answerEmail']); 
+    unset($_SESSION['answerBetreff']); 
+    unset($_SESSION['answerNachricht']); 
+  }
 ?>
 
-
+<!-- Diese fiktive EMail dienst dient für die Kommunikation zwischen den virtuellen Charakteren des Night-V Rollenspiel Servers. -->

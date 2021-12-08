@@ -6,6 +6,7 @@ session_start();
 gameServerStatus();
 
 if(isset($_SESSION['email'])) {
+  unsetSessions();
   echo '<div> Sie sind bereits angemeldet.<br>Sie werden weitergeleitet. </div> <meta http-equiv="refresh" content="3; URL=postfach.php">';
   $showFormular = false;
 }

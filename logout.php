@@ -30,6 +30,9 @@
         session_start();
         session_destroy();
         unset($_SESSION['email']);
+        unset($_SESSION['answerEmail']); 
+        unset($_SESSION['answerBetreff']); 
+        unset($_SESSION['answerNachricht']);
         echo '<div>Sie wurden erfolgreich ausgeloggt!</div> <meta http-equiv="refresh" content="3; URL=index.php">';
     ?>
 

@@ -103,7 +103,6 @@ require_once("functions.php");
 
     .absender{
       width: 100%;
-
     }
 
     .von{
@@ -153,7 +152,7 @@ require_once("functions.php");
 <div class="mailbox">
 
     <form method='GET' action='absenden.php'>
-      <input class="schreiben" type='submit' value='Verfassen'>
+      <input class="schreiben" type='submit' value='Verfassen'>      
     </form>
 
     <form method='GET' action='logout.php'>
@@ -166,7 +165,6 @@ require_once("functions.php");
   
 </div>
 
-
 <div style="background: #2e2e2e;  font-size: 1.8vh; border-right: inset;  border-right-color: black;  border-right-width: 1px;">
 <?php
 
@@ -175,13 +173,10 @@ $sql = "SELECT emails.eid, emails.absender, emails.betreff FROM emails WHERE emp
 foreach ($pdo->query($sql) as $row){
   $absender = $row['absender'];
   $eid = $row['eid'];
- 
   $cmd = "SELECT users.vorname, users.nachname FROM users WHERE email = '$absender'";
   foreach ($pdo->query($cmd) as $inf){
-    //*echo "".$inf['vorname']." ".$inf['nachname']."<br>"; 
     echo "<div class='hallo'><form class='boxx' action='?register=$eid' method='post'><input class='test' value='' type='submit' name='eid'>".$inf['vorname']." ".$inf['nachname']."<br>".$row['betreff']."<br></form></div>"; 
   }
-
   $absenderBetreff = $row['betreff'];
 }
 ?>
@@ -192,19 +187,23 @@ foreach ($pdo->query($sql) as $row){
 
 //get email from db
 if(isset($_GET['register'])) {
+  unsetSessions();
   $meid = $_GET['register'];
-  $msql = "SELECT users.vorname, users.nachname, users.email, emails.nachricht, emails.betreff FROM emails, users WHERE eid = '$meid' AND users.email = emails.absender";
+  $msql = "SELECT users.vorname, users.nachname, users.email, emails.nachricht, emails.betreff, emails.created_at FROM emails, users WHERE eid = '$meid' AND users.email = emails.absender";
   $nuser = $pdo->query($msql)->fetch();
   
-  echo "<div class='von'><div class='ichbin'><b>Von: </b>".$nuser['vorname']." ".$nuser['nachname']." &lt;".$nuser['email']."&gt; <form action='?loeschen=$meid' method='post'> <input class='delete' type='submit' name='loeschen' value='Löschen' ><div> Betreff: ".$nuser['betreff']."</div></div></div><div class='nachricht'>".$nuser['nachricht']."</div>";
+  $_SESSION['answerEmail'] = $nuser['email'];
+  $_SESSION['answerBetreff'] = "Re: " . $nuser['betreff'];
+  $_SESSION['answerNachricht'] = "Am " . $nuser['created_at'] . " schrieb " . $nuser['vorname'] . " " . $nuser['nachname'] . ": 
+  ". $nuser['nachricht'];
 
-  //*echo "<form action='?loeschen=$meid' method='post'><input type='submit' name='loeschen' value='Löschen'> </form>"; //frage für mrp67 bitte mit aipo reden danke 
+  echo "<div class='von'><div class='ichbin'><b>Von: </b>".$nuser['vorname']." ".$nuser['nachname']." &lt;".$nuser['email']."&gt; <form action='?loeschen=$meid' method='post'> <input class='delete' type='submit' name='loeschen' value='Löschen'> </form> <div> Betreff: ".$nuser['betreff']."</div></div></div><div class='nachricht'>".$nuser['nachricht']."</div>";
+  echo "<form action='absenden.php?answer=1' method='post'><input type='submit' name='answer' value='Antworten'> </form>";
 
 }
 
 if(isset($_GET['loeschen'])) {
   $meid = $_GET['loeschen'];
-
   $lmsql = "DELETE FROM emails WHERE eid=?";
   $cmd= $pdo->prepare($lmsql);
   $cmd->execute([$meid]);

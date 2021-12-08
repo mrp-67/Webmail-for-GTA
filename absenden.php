@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <title>Absenden</title>
 <style>
-  body {
+  body{
     margin: 0;
     font-size: 2vh;
     font-family: arial;
@@ -17,13 +17,13 @@
     display: flex;
   }
 
-  .hallo {
+  .hallo{
     width: 12vh;
     text-align: end;
     padding-right: 2vh;
   }
 
-  .mailtext {
+  .mailtext{
     width: 100%;
     border: 0;
     background-color: #424242;
@@ -32,7 +32,7 @@
     padding: 2vh;
   }
 
-  .betrefftext {
+  .betrefftext{
     width: 100%;
     border: 0;
     background-color: #424242;
@@ -41,7 +41,7 @@
     color: white;
   }
 
-  .nachrichttext {
+  .nachrichttext{
     width: 90%;
     height: 70vh;
     border: 0px;
@@ -52,7 +52,7 @@
     margin: 0px;
   }
 
-  .bittonn {
+  .bittonn{
     width: 20vh;
     height: 4vh;
     position: absolute;
@@ -63,7 +63,7 @@
     color: white;
   }
 
-  .ppp {
+  .ppp{
     position: absolute;
     left: 4vh;
     bottom: 0vh;

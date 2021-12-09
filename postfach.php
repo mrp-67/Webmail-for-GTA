@@ -78,7 +78,7 @@ require_once("functions.php");
 
     .hallo{
       width: 30vh;
-      height: 8vh;
+      height: 9vh;
       border-bottom: inset;
       border-bottom-color: black;
       border-bottom-width: 1px;
@@ -133,7 +133,7 @@ require_once("functions.php");
       background: #2e2e2e;
       height: 89.2vh;
       padding: 2.7vh 0 0 2.7vh;
-      font-size: 2vh;
+      font-size: 1.8vh;
     }
 
     .ichbin{
@@ -169,15 +169,17 @@ require_once("functions.php");
 <?php
 
 //get emails from db for overview
-$sql = "SELECT emails.eid, emails.absender, emails.betreff FROM emails WHERE empfaenger = '$email' ORDER BY eid DESC";
+$sql = "SELECT emails.eid, emails.absender, emails.betreff, emails.datum, emails.zeitstempel, emails.uhrzeit FROM emails WHERE empfaenger = '$email' ORDER BY eid DESC";
 foreach ($pdo->query($sql) as $row){
   $absender = $row['absender'];
   $eid = $row['eid'];
   $cmd = "SELECT users.vorname, users.nachname FROM users WHERE email = '$absender'";
+  
   foreach ($pdo->query($cmd) as $inf){
-    echo "<div class='hallo'><form class='boxx' action='?register=$eid' method='post'><input class='test' value='' type='submit' name='eid'>".$inf['vorname']." ".$inf['nachname']."<br>".$row['betreff']."<br></form></div>"; 
+
+    echo "<div class='hallo'><form class='boxx' action='?register=$eid' method='post'><input class='test' value='' type='submit' name='eid'>".$inf['vorname']." ".$inf['nachname']."<br>".$row['betreff']."<br>".$row['datum']." - ".$row['uhrzeit']."</form></div>"; 
   }
-  $absenderBetreff = $row['betreff'];
+
 }
 ?>
 </div>
@@ -189,13 +191,13 @@ foreach ($pdo->query($sql) as $row){
 if(isset($_GET['register'])) {
   unsetSessions();
   $meid = $_GET['register'];
-  $msql = "SELECT users.vorname, users.nachname, users.email, emails.nachricht, emails.betreff, emails.created_at FROM emails, users WHERE eid = '$meid' AND users.email = emails.absender";
+  $msql = "SELECT users.vorname, users.nachname, users.email, emails.nachricht, emails.betreff, emails.datum, emails.uhrzeit FROM emails, users WHERE eid = '$meid' AND users.email = emails.absender";
   $nuser = $pdo->query($msql)->fetch();
   
   $_SESSION['answerEmail'] = $nuser['email'];
   $_SESSION['answerBetreff'] = "Re: " . $nuser['betreff'];
-  $_SESSION['answerNachricht'] = "Am " . $nuser['created_at'] . " schrieb " . $nuser['vorname'] . " " . $nuser['nachname'] . ": 
-  ". $nuser['nachricht'];
+  $_SESSION['answerNachricht'] = "Am " . $nuser['datum'] . " um " . $nuser['uhrzeit'] . " schrieb " . $nuser['vorname'] . " " . $nuser['nachname'] . ":
+".str_replace("<br />","",$nuser['nachricht']);
 
   echo "<div class='von'><div class='ichbin'><b>Von: </b>".$nuser['vorname']." ".$nuser['nachname']." &lt;".$nuser['email']."&gt; <form action='?loeschen=$meid' method='post'> <input class='delete' type='submit' name='loeschen' value='Löschen'> </form> <div> Betreff: ".$nuser['betreff']."</div></div></div><div class='nachricht'>".$nuser['nachricht']."</div>";
   echo "<form action='absenden.php?answer=1' method='post'><input type='submit' name='answer' value='Antworten'> </form>";

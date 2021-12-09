@@ -107,12 +107,14 @@ if(isset($_GET['absenden'])) {
     $error = true;
   }
 
-  if(!$error) { 
+  if(!$error) {
+    $date = date("d.m.Y");
+    $uhrzeit = date("H:i");
     $empfaenger = $_POST['empfaenger'];
     $betreff = $_POST['betreff'];
     $message = nl2br($_POST['message']);
-    $statement = $pdo->prepare("INSERT INTO emails (absender, empfaenger, betreff, nachricht) VALUES (:absender, :empfaenger, :betreff, :nachricht)");
-    $result = $statement->execute(array('absender' => $absender, 'empfaenger' => $empfaenger, 'betreff' => $betreff, 'nachricht' => $message));
+    $statement = $pdo->prepare("INSERT INTO emails (absender, empfaenger, betreff, nachricht, datum, uhrzeit) VALUES (:absender, :empfaenger, :betreff, :nachricht, :datum, :uhrzeit)");
+    $result = $statement->execute(array('absender' => $absender, 'empfaenger' => $empfaenger, 'betreff' => $betreff, 'nachricht' => $message, 'datum' => $date, 'uhrzeit' => $uhrzeit));
 
     if($result) {        
       $showFormular = false;
